@@ -17,5 +17,5 @@ dependencies {
     implementation Coroutines.android
 
     //modules
-    //implementation project(Modules.network)
+    implementation project(Modules.abstraction)
 }
