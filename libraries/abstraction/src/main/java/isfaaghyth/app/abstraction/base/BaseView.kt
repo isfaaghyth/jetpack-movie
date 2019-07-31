@@ -1,4 +1,4 @@
-package isfaaghyth.app.abstraction
+package isfaaghyth.app.abstraction.base
 
 import androidx.annotation.StringRes
 

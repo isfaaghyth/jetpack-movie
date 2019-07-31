@@ -1,8 +1,9 @@
-package isfaaghyth.app.abstraction
+package isfaaghyth.app.abstraction.base
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import isfaaghyth.app.abstraction.util.KeyboardUtils
+import isfaaghyth.app.abstraction.util.toast
 
 abstract class BaseActivity: AppCompatActivity(), BaseView {
 
@@ -31,7 +32,7 @@ abstract class BaseActivity: AppCompatActivity(), BaseView {
     }
 
     override fun onMessage(message: String?) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        toast(message)
     }
 
     override fun onMessage(stringResId: Int) {
@@ -49,7 +50,7 @@ abstract class BaseActivity: AppCompatActivity(), BaseView {
      * hide keyboard layout
      */
     override fun hideKeyboard() {
-        //TODO(hide keyboard)
+        return KeyboardUtils().hide(this)
     }
 
 }
