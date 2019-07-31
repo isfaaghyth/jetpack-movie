@@ -5,4 +5,6 @@
 
 object Modules {
     val app             = ":app"
+
+    val movies          = ":features:movies"
 }

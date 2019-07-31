@@ -1,0 +1,21 @@
+apply from: "$rootDir/common.gradle"
+
+dependencies {
+    //android support
+    implementation Android.appCompat
+    implementation Android.ktx
+    implementation Android.constraintLayout
+
+    //network
+    implementation Retrofit.retrofit
+    implementation Retrofit.gsonConverter
+    implementation Retrofit.okHttpLogging
+    implementation Retrofit.coroutinesAdapter
+
+    //coroutines
+    implementation Coroutines.core
+    implementation Coroutines.android
+
+    //modules
+    //implementation project(Modules.network)
+}
