@@ -1,0 +1,9 @@
+apply from: "$rootDir/common.gradle"
+
+dependencies {
+    //network
+    implementation Retrofit.retrofit
+    implementation Retrofit.gsonConverter
+    implementation Retrofit.coroutinesAdapter
+    implementation Retrofit.okHttpLogging
+}

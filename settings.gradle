@@ -1,2 +1,9 @@
+//app
 include Modules.app
+
+//features
 include Modules.movies
+
+//libraries
+include Modules.network
+include Modules.abstraction

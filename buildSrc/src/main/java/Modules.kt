@@ -4,7 +4,13 @@
  */
 
 object Modules {
-    val app             = ":app"
+    //app level
+    val app = ":app"
 
-    val movies          = ":features:movies"
+    //feature level
+    val movies = ":features:movies"
+
+    //libraries level
+    val network = ":libraries:network"
+    val abstraction = ":libraries:abstraction"
 }
