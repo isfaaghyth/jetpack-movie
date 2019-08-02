@@ -12,6 +12,10 @@ dependencies {
     implementation Retrofit.okHttpLogging
     implementation Retrofit.coroutinesAdapter
 
+    //jetpack
+    implementation Jetpack.lifecycle
+    kapt Jetpack.lifecycleCompiler
+
     //coroutines
     implementation Coroutines.core
     implementation Coroutines.android

@@ -19,42 +19,50 @@ object Releases {
 
 object Version {
     //common
-    const val kotlin            = "1.3.20"
-    const val gradle            = "3.3.1"
+    const val kotlin = "1.3.20"
+    const val gradle = "3.3.1"
 
     //androidx
-    const val constraintLayout  = "1.1.2"
-    const val appCompat         = "1.0.0-beta01"
-    const val ktx               = "1.2.0-alpha02"
+    const val constraintLayout = "1.1.2"
+    const val appCompat = "1.0.0-beta01"
+    const val ktx = "1.2.0-alpha02"
 
     //network
-    const val retrofit          = "2.5.0"
-    const val rxretrofit        = "2.4.0"
-    const val okhttpLogging     = "3.11.0"
+    const val retrofit = "2.5.0"
+    const val rxretrofit = "2.4.0"
+    const val okhttpLogging = "3.11.0"
 
     //thread
-    const val coroutines        = "1.3.0-M2"
+    const val coroutines = "1.3.0-M2"
     const val coroutinesAdapter = "0.9.2"
 
     //media
-    const val glide             = "4.8.0"
+    const val glide = "4.8.0"
+
+    //jetpack
+    const val archLifecycleVersion = "2.0.0"
 
     //di
-    const val dagger            = "2.21"
+    const val dagger = "2.21"
 
     //testing
-    const val jUnit             = "4.12"
-    const val testRunner        = "1.1.0-alpha4"
-    const val espresso          = "3.1.0-alpha4"
-    const val mockito           = "2.8.47"
-    const val mockKotlin        = "2.1.0"
-    const val mockTestRunner    = "0.3.1"
+    const val jUnit = "4.12"
+    const val testRunner = "1.1.0-alpha4"
+    const val espresso = "3.1.0-alpha4"
+    const val mockito = "2.8.47"
+    const val mockKotlin = "2.1.0"
+    const val mockTestRunner = "0.3.1"
 }
 
 object Android {
     val constraintLayout = "androidx.constraintlayout:constraintlayout:${Version.constraintLayout}"
     val appCompat = "androidx.appcompat:appcompat:${Version.appCompat}"
     val ktx = "androidx.core:core-ktx:${Version.ktx}"
+}
+
+object Jetpack {
+    val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Version.archLifecycleVersion}"
+    val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Version.archLifecycleVersion}"
 }
 
 object Dependencies {
