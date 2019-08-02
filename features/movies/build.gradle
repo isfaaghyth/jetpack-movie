@@ -12,6 +12,10 @@ dependencies {
     implementation Retrofit.okHttpLogging
     implementation Retrofit.coroutinesAdapter
 
+    //coroutines
+    implementation Coroutines.core
+    implementation Coroutines.android
+
     //jetpack
     implementation Jetpack.lifecycle
     kapt Jetpack.lifecycleCompiler
@@ -22,4 +26,5 @@ dependencies {
 
     //modules
     implementation project(Modules.abstraction)
+    implementation project(Modules.network)
 }
