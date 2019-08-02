@@ -9,7 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-class Network {
+object Network {
+
     fun retrofitClient(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.MOVIE_URL)
