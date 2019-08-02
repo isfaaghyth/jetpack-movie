@@ -11,11 +11,14 @@ android {
         targetSdkVersion Releases.targetSdkVersion
         versionCode Releases.versionCode
         versionName Releases.versionName
-
-        buildConfigField("String", "GITHUB_URL", "\"https://themoviedb.org/\"")
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "API_KEY", movieApiKey)
+            buildConfigField("String", "MOVIE_URL", movieApiUrl)
+            buildConfigField("String", "IMAGE_URL", movieImageUrl)
+        }
         release {
             minifyEnabled false
         }
