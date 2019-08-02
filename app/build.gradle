@@ -38,9 +38,6 @@ dependencies {
     implementation Android.ktx
     implementation Android.constraintLayout
 
-    //project
-    //implementation project(Modules.repos)
-
     //dependency injection
     implementation Dagger.dagger
     implementation Dagger.android
@@ -55,4 +52,7 @@ dependencies {
     testImplementation Testing.mockKtRunner
     androidTestImplementation Testing.testRunner
     androidTestImplementation Testing.espresso
+
+    /* Feature Module should add below */
+    implementation project(Modules.movies)
 }
