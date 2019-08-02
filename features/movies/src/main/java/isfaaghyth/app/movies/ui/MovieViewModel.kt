@@ -21,8 +21,8 @@ class MovieViewModel @Inject constructor(
     val state: LiveData<MovieState> get() = _state
 
     override fun getPopularMovie() {
+        _state.value = MovieState.ShowLoading
         CoroutineScope(Dispatchers.IO).launch {
-            _state.value = MovieState.ShowLoading
             val result = useCase.getPopularMovie()
             withContext(Dispatchers.Main) {
                 _state.value = MovieState.HideLoading
