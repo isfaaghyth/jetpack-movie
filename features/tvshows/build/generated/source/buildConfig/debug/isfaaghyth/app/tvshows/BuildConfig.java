@@ -11,5 +11,7 @@ public final class BuildConfig {
   public static final int VERSION_CODE = 1;
   public static final String VERSION_NAME = "1.0";
   // Fields from default config.
-  public static final String GITHUB_URL = "https://themoviedb.org/";
+  public static final String API_KEY = "9351b653885866a95fcef04c4f0c7426";
+  public static final String IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
+  public static final String MOVIE_URL = "https://api.themoviedb.org/3/";
 }

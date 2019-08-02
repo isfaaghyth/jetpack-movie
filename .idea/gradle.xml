@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/movies" />
+            <option value="$PROJECT_DIR$/features/tvshows" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/abstraction" />
             <option value="$PROJECT_DIR$/libraries/network" />
