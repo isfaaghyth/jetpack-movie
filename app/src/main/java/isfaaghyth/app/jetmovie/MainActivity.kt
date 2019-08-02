@@ -1,21 +1,18 @@
 package isfaaghyth.app.jetmovie
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import isfaaghyth.app.movies.ui.MovieActivity
+import androidx.appcompat.app.AppCompatActivity
+import isfaaghyth.app.movies.ui.MovieFragment
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie)
-        _testMovieIntent()
-    }
+        setContentView(R.layout.activity_main)
 
-    private fun _testMovieIntent() {
-        Thread.sleep(1000)
-        startActivity(MovieActivity.intent(this))
-        finish()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.test, MovieFragment())
+            .commit()
     }
 
 }

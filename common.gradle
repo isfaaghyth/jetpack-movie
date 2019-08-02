@@ -12,10 +12,15 @@ android {
         versionCode Releases.versionCode
         versionName Releases.versionName
 
-        buildConfigField("String", "GITHUB_URL", "\"https://themoviedb.org/\"")
+        buildConfigField("String", "API_KEY", movieApiKey)
+        buildConfigField("String", "MOVIE_URL", movieApiUrl)
+        buildConfigField("String", "IMAGE_URL", movieImageUrl)
     }
 
     buildTypes {
+        debug {
+
+        }
         release {
             minifyEnabled false
         }
@@ -33,7 +38,6 @@ dependencies {
     //di
     implementation Dagger.dagger
     implementation Dagger.android
-    implementation Dagger.androidSupport
     kapt Dagger.compiler
     kapt Dagger.processor
 

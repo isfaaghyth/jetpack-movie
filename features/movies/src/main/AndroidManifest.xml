@@ -1,9 +1,3 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="isfaaghyth.app.movies">
-
-    <application>
-        <activity android:name=".ui.MovieActivity"/>
-    </application>
-
-</manifest>
+    package="isfaaghyth.app.movies"/>
