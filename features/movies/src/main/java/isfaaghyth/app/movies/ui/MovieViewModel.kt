@@ -1,4 +1,34 @@
 package isfaaghyth.app.movies.ui
 
-class MovieViewModel {
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import isfaaghyth.app.abstraction.base.BaseViewModel
+import isfaaghyth.app.movies.domain.MovieUseCase
+import kotlinx.coroutines.*
+import javax.inject.Inject
+
+interface MovieContract {
+    fun getPopularMovie()
+}
+
+class MovieViewModel @Inject constructor(
+    private val useCase: MovieUseCase,
+    dispatcher: CoroutineDispatcher
+): BaseViewModel(dispatcher), MovieContract {
+
+    private val _state = MutableLiveData<MovieState>()
+
+    val state: LiveData<MovieState> get() = _state
+
+    override fun getPopularMovie() {
+        CoroutineScope(Dispatchers.IO).launch {
+            _state.value = MovieState.ShowLoading
+            val result = useCase.getPopularMovie()
+            withContext(Dispatchers.Main) {
+                _state.value = MovieState.HideLoading
+                _state.postValue(MovieState.LoadMovieSuccess(result))
+            }
+        }
+    }
+
 }

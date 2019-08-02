@@ -6,6 +6,10 @@ dependencies {
     implementation Android.ktx
     implementation Android.constraintLayout
 
+    //coroutines
+    implementation Coroutines.core
+    implementation Coroutines.android
+
     //glide
     implementation Glide.glide
     kapt Glide.compiler

@@ -24,7 +24,7 @@ object Version {
 
     //androidx
     const val constraintLayout = "1.1.2"
-    const val appCompat = "1.0.0-beta01"
+    const val appCompat = "1.0.2"
     const val ktx = "1.2.0-alpha02"
 
     //network

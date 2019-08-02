@@ -1,4 +1,5 @@
 package isfaaghyth.app.movies.data.repository
 
-interface MovieRepository {
-}
+import isfaaghyth.app.movies.data.MovieService
+
+interface MovieRepository: MovieService
