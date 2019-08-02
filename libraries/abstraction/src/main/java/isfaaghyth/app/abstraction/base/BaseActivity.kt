@@ -10,7 +10,7 @@ abstract class BaseActivity: AppCompatActivity(), BaseView {
     /**
      * lifecycle method
      * @method contentView(): @return resLayoutId
-     * @method initView()
+     * @method initView()depe
      */
     abstract fun contentView(): Int
     abstract fun initView()

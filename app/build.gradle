@@ -41,7 +41,6 @@ dependencies {
     //dependency injection
     implementation Dagger.dagger
     implementation Dagger.android
-    implementation Dagger.androidSupport
     kapt Dagger.compiler
     kapt Dagger.processor
 
@@ -55,4 +54,8 @@ dependencies {
 
     /* Feature Module should add below */
     implementation project(Modules.movies)
+}
+
+repositories {
+    google()
 }

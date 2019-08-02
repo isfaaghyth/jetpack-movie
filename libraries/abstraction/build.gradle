@@ -8,7 +8,6 @@ dependencies {
 
     //coroutines
     implementation Coroutines.core
-    implementation Coroutines.android
 
     //glide
     implementation Glide.glide
