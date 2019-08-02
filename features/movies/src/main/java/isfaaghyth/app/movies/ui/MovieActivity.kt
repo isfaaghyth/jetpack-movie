@@ -7,7 +7,7 @@ import isfaaghyth.app.movies.R
 
 class MovieActivity: BaseActivity(), MovieView {
 
-    override fun contentView(): Int = R.layout.activity_main
+    override fun contentView(): Int = R.layout.activity_movie
 
     override fun initView() {
 

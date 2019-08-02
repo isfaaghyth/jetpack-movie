@@ -8,12 +8,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_movie)
+        _testMovieIntent()
     }
 
-    override fun onStart() {
-        super.onStart()
+    private fun _testMovieIntent() {
+        Thread.sleep(1000)
         startActivity(MovieActivity.intent(this))
+        finish()
     }
 
 }
