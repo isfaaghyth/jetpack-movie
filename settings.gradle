@@ -3,6 +3,7 @@ include Modules.app
 
 //features
 include Modules.movies
+include Modules.tvshows
 
 //libraries
 include Modules.network
