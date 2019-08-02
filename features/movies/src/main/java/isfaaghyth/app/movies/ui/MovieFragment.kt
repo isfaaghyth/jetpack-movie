@@ -9,10 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import isfaaghyth.app.abstraction.util.toast
 import isfaaghyth.app.movies.R
 import isfaaghyth.app.movies.data.model.Movie
+import isfaaghyth.app.movies.data.model.Movies
 import isfaaghyth.app.movies.di.DaggerMovieComponent
+import kotlinx.android.synthetic.main.fragment_movie.*
 import javax.inject.Inject
 
 class MovieFragment: Fragment() {
@@ -47,11 +50,7 @@ class MovieFragment: Fragment() {
             when (state) {
                 is MovieState.ShowLoading -> toast("loading")
                 is MovieState.HideLoading -> toast("complete")
-                is MovieState.LoadMovieSuccess -> {
-                    for (movie: Movie in state.data.resultsIntent) {
-                        Log.d("TAG", movie.title)
-                    }
-                }
+                is MovieState.LoadMovieSuccess -> movieResult(state.data)
                 is MovieState.MovieError -> {
                     val errorBody = state.error.response().errorBody()
                     val errorResult = errorBody?.string()
@@ -59,6 +58,11 @@ class MovieFragment: Fragment() {
                 }
             }
         })
+    }
+
+    fun movieResult(movies: Movies) {
+        lstMovies.layoutManager = GridLayoutManager(context, 2)
+        lstMovies.adapter = MovieAdapter(movies.resultsIntent)
     }
 
     fun initInjector() {
