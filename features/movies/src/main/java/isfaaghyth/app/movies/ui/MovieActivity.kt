@@ -11,7 +11,7 @@ import isfaaghyth.app.movies.data.model.Movie
 import isfaaghyth.app.movies.di.DaggerMovieComponent
 import javax.inject.Inject
 
-class MovieActivity: BaseActivity(), MovieView, LifecycleOwner {
+class MovieActivity: BaseActivity(), LifecycleOwner {
 
     override fun contentView(): Int = R.layout.activity_movie
 
@@ -38,6 +38,11 @@ class MovieActivity: BaseActivity(), MovieView, LifecycleOwner {
                         Log.d("TAG", movie.title)
                     }
                 }
+                is MovieState.MovieError -> {
+                    val errorBody = state.error.response().errorBody()
+                    val errorResult = errorBody?.string()
+                    onMessage(errorResult)
+                }
             }
         })
     }
@@ -47,6 +52,11 @@ class MovieActivity: BaseActivity(), MovieView, LifecycleOwner {
             .movieModule(MovieModule())
             .build()
             .inject(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.clear()
     }
 
     companion object {
