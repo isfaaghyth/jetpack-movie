@@ -6,8 +6,6 @@ import isfaaghyth.app.abstraction.base.BaseViewModel
 import isfaaghyth.app.movies.domain.MovieUseCase
 import kotlinx.coroutines.*
 import retrofit2.HttpException
-import java.io.IOException
-import java.lang.Exception
 import javax.inject.Inject
 
 interface MovieContract {
@@ -31,7 +29,7 @@ class MovieViewModel @Inject constructor(
                     _state.value = MovieState.HideLoading
                     _state.postValue(MovieState.LoadMovieSuccess(result))
                 }
-            } catch (e: Exception) {
+            } catch (e: HttpException) {
                 withContext(Dispatchers.Main) {
                     _state.value = MovieState.MovieError(e)
                 }

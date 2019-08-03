@@ -27,6 +27,11 @@ class MovieFragment: Fragment() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: MovieViewModel
 
+    private var movieData = arrayListOf<Movie>()
+    private val adapter: MovieAdapter by lazy {
+        MovieAdapter(movieData)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(contentView(), container, false)
     }
@@ -43,6 +48,10 @@ class MovieFragment: Fragment() {
             .of(this, viewModelFactory)
             .get(MovieViewModel::class.java)
 
+        //layout manager
+        lstMovies.layoutManager = LinearLayoutManager(context)
+        lstMovies.adapter = adapter
+
         getMovie()
     }
 
@@ -56,9 +65,8 @@ class MovieFragment: Fragment() {
                 is MovieState.ShowLoading -> toast("loading")
                 is MovieState.HideLoading -> toast("complete")
                 is MovieState.LoadMovieSuccess -> {
-                    for (movie: Movie in state.data.resultsIntent) {
-                        Log.d("TAG", movie.title)
-                    }
+                    movieData.addAll(state.data.resultsIntent)
+                    adapter.notifyDataSetChanged()
                 }
                 is MovieState.MovieError -> {
                     toast("there's problem, please try again")
