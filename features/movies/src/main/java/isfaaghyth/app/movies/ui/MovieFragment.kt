@@ -10,17 +10,19 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import isfaaghyth.app.abstraction.util.toast
 import isfaaghyth.app.movies.R
 import isfaaghyth.app.movies.data.model.Movie
 import isfaaghyth.app.movies.data.model.Movies
 import isfaaghyth.app.movies.di.DaggerMovieComponent
 import kotlinx.android.synthetic.main.fragment_movie.*
+import retrofit2.HttpException
 import javax.inject.Inject
 
 class MovieFragment: Fragment() {
 
-    fun contentView(): Int = R.layout.fragment_movie
+    private fun contentView(): Int = R.layout.fragment_movie
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: MovieViewModel
@@ -35,7 +37,7 @@ class MovieFragment: Fragment() {
         initView()
     }
 
-    fun initView() {
+    private fun initView() {
         //view model provider
         viewModel = ViewModelProviders
             .of(this, viewModelFactory)
@@ -45,27 +47,27 @@ class MovieFragment: Fragment() {
     }
 
     private fun getMovie() {
+        //get movie
         viewModel.getPopularMovie()
+
+        //observe it!
         viewModel.state.observe(this, Observer { state ->
             when (state) {
                 is MovieState.ShowLoading -> toast("loading")
                 is MovieState.HideLoading -> toast("complete")
-                is MovieState.LoadMovieSuccess -> movieResult(state.data)
+                is MovieState.LoadMovieSuccess -> {
+                    for (movie: Movie in state.data.resultsIntent) {
+                        Log.d("TAG", movie.title)
+                    }
+                }
                 is MovieState.MovieError -> {
-                    val errorBody = state.error.response().errorBody()
-                    val errorResult = errorBody?.string()
-                    toast(errorResult)
+                    toast("there's problem, please try again")
                 }
             }
         })
     }
 
-    fun movieResult(movies: Movies) {
-        lstMovies.layoutManager = GridLayoutManager(context, 2)
-        lstMovies.adapter = MovieAdapter(movies.resultsIntent)
-    }
-
-    fun initInjector() {
+    private fun initInjector() {
         DaggerMovieComponent.builder()
             .movieModule(MovieModule())
             .build()

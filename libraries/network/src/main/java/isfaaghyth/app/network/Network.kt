@@ -24,7 +24,6 @@ object Network {
         return OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
             .addInterceptor(createLoggingInterceptor())
-            .addInterceptor(defaultHttpClient())
             .pingInterval(30, TimeUnit.SECONDS)
             .readTimeout(1, TimeUnit.MINUTES)
             .connectTimeout(1, TimeUnit.MINUTES)
@@ -37,14 +36,4 @@ object Network {
         return interceptor
     }
 
-    @Throws(IOException::class)
-    private fun defaultHttpClient(): Interceptor {
-        return Interceptor { chain ->
-            val request = chain.request()
-                .newBuilder()
-                .addHeader("Content-Type", "application/json")
-                .build()
-            return@Interceptor chain.proceed(request)
-        }
-    }
 }
