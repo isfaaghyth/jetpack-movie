@@ -1,10 +1,13 @@
 package isfaaghyth.app.movies.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import isfaaghyth.app.abstraction.util.load
 import isfaaghyth.app.movies.BuildConfig
 import isfaaghyth.app.movies.R
@@ -23,7 +26,7 @@ class MovieAdapter(private val movie: List<Movie>): RecyclerView.Adapter<MovieAd
         holder.bind(movie[position])
     }
 
-    class Holder(view: View): RecyclerView.ViewHolder(view) {
+    class Holder(private val view: View): RecyclerView.ViewHolder(view) {
         private val cardItem = view.card_movie
         private val poster = view.img_poster
         private val title = view.txt_movie_name
@@ -41,11 +44,13 @@ class MovieAdapter(private val movie: List<Movie>): RecyclerView.Adapter<MovieAd
         }
 
         fun bind(movie: Movie) {
-            cardItem.setOnClickListener {  }
-            Log.d("TAG", "${BuildConfig.IMAGE_URL}${movie.backdropPath}")
-            poster.load("${BuildConfig.IMAGE_URL}${movie.backdropPath}")
             title.text = movie.title
             year.text = movie.releaseDate
+            poster.load(movie.bannerUrl())
+            cardItem.setOnClickListener {
+                val uri = Uri.parse(movie.applinkMovie())
+                view.context.startActivity(Intent(Intent.ACTION_VIEW, uri))
+            }
         }
     }
 
