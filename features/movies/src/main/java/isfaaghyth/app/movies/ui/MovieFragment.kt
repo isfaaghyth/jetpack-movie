@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 class MovieFragment: Fragment() {
 
-    fun contentView(): Int = R.layout.fragment_movie
+    private fun contentView(): Int = R.layout.fragment_movie
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: MovieViewModel

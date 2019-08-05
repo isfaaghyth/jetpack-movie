@@ -1,5 +1,8 @@
 package isfaaghyth.app.movies.data.repository
 
-import isfaaghyth.app.movies.data.MovieService
+import isfaaghyth.app.movies.data.model.Movies
+import kotlinx.coroutines.Deferred
 
-interface MovieRepository: MovieService
+interface MovieRepository {
+    fun getPopularMovie(apiKey: String): Deferred<Movies>
+}

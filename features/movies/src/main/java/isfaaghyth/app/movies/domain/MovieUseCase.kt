@@ -7,8 +7,8 @@ import javax.inject.Inject
 
 class MovieUseCase @Inject constructor(private val repository: MovieRepository) {
 
-    suspend fun getPopularMovie(apiKey: String = BuildConfig.API_KEY): Movies {
-        return repository.getPopularMovie(apiKey).await()
+    suspend fun getPopularMovie(): Movies {
+        return repository.getPopularMovie(BuildConfig.API_KEY).await()
     }
 
 }
