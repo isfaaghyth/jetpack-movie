@@ -10,6 +10,7 @@ object Modules {
     //feature level
     val movies = ":features:movies"
     val tvshows = ":features:tvshows"
+    val movieDetail = ":features:movie_details"
 
     //libraries level
     val network = ":libraries:network"

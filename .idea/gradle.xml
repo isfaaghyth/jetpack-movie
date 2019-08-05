@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/movie_details" />
             <option value="$PROJECT_DIR$/features/movies" />
             <option value="$PROJECT_DIR$/features/tvshows" />
             <option value="$PROJECT_DIR$/libraries" />
