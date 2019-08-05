@@ -40,7 +40,8 @@ object Version {
     const val glide = "4.8.0"
 
     //jetpack
-    const val archLifecycleVersion = "2.0.0"
+    const val archLifecycle = "2.0.0"
+    const val recyclerView = "1.0.0"
 
     //di
     const val dagger = "2.21"
@@ -61,8 +62,9 @@ object Android {
 }
 
 object Jetpack {
-    val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Version.archLifecycleVersion}"
-    val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Version.archLifecycleVersion}"
+    val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Version.archLifecycle}"
+    val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Version.archLifecycle}"
+    val recyclerView = "androidx.recyclerview:recyclerview:${Version.recyclerView}"
 }
 
 object Dependencies {
@@ -103,6 +105,5 @@ object Testing {
     val testRunner = "androidx.test:runner:${Version.testRunner}"
     val espresso = "androidx.test.espresso:espresso-core:${Version.espresso}"
     val mockito = "org.mockito:mockito-inline:${Version.mockito}"
-    val mockKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Version.mockKotlin}"
     val mockKtRunner = "de.jodamob.kotlin:kotlin-runner-junit4:${Version.mockTestRunner}"
 }

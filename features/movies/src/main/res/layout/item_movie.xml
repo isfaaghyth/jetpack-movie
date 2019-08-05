@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:id="@+id/card_movie"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_poster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_placeholder"
+                android:adjustViewBounds="true"
+                android:scaleType="center"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_gradient"
+                android:layout_gravity="bottom"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="bottom">
+
+                <TextView
+                    android:id="@+id/txt_movie_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="title"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical"
+                    android:textColor="#ffffff"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="6dp"/>
+
+                <TextView
+                    android:id="@+id/txt_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2019"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/darker_gray"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="20dp"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
