@@ -26,13 +26,14 @@
                 android:id="@+id/img_poster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:src="@mipmap/ic_placeholder"
                 android:adjustViewBounds="true"
                 android:scaleType="center"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#e3e3e3"
+                android:background="@drawable/bg_gradient"
                 android:layout_gravity="bottom"/>
 
             <LinearLayout

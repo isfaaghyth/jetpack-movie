@@ -49,9 +49,9 @@ class MovieFragment: Fragment() {
             .get(MovieViewModel::class.java)
 
         //layout manager
-        lstMovies.layoutManager = LinearLayoutManager(context)
         lstMovies.adapter = adapter
 
+        //get movies
         getMovie()
     }
 

@@ -1,5 +1,6 @@
 package isfaaghyth.app.movies.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,6 +42,7 @@ class MovieAdapter(private val movie: List<Movie>): RecyclerView.Adapter<MovieAd
 
         fun bind(movie: Movie) {
             cardItem.setOnClickListener {  }
+            Log.d("TAG", "${BuildConfig.IMAGE_URL}${movie.backdropPath}")
             poster.load("${BuildConfig.IMAGE_URL}${movie.backdropPath}")
             title.text = movie.title
             year.text = movie.releaseDate

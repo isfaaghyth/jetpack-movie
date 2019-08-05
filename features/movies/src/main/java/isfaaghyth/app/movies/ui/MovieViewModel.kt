@@ -33,7 +33,8 @@ class MovieViewModel @Inject constructor(
                 }
             } catch (e: HttpException) {
                 withContext(Dispatchers.Main) {
-                    _state.value = MovieState.MovieError(e)
+                    _state.value = MovieState.HideLoading
+                    _state.postValue(MovieState.MovieError(e))
                 }
             }
         }
