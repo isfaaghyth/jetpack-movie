@@ -1,2 +1,16 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="isfaaghyth.app.movie_details"/>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="isfaaghyth.app.movie_details">
+
+    <application>
+        <activity android:name=".MovieDetailActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="moviedb"
+                      android:host="detail"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
