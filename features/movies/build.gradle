@@ -17,6 +17,7 @@ dependencies {
     implementation Coroutines.android
 
     //jetpack
+    implementation Jetpack.recyclerView
     implementation Jetpack.lifecycle
     kapt Jetpack.lifecycleCompiler
 
