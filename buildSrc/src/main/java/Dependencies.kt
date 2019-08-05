@@ -105,6 +105,5 @@ object Testing {
     val testRunner = "androidx.test:runner:${Version.testRunner}"
     val espresso = "androidx.test.espresso:espresso-core:${Version.espresso}"
     val mockito = "org.mockito:mockito-inline:${Version.mockito}"
-    val mockKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Version.mockKotlin}"
     val mockKtRunner = "de.jodamob.kotlin:kotlin-runner-junit4:${Version.mockTestRunner}"
 }

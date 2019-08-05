@@ -28,10 +28,4 @@ dependencies {
     //modules
     implementation project(Modules.abstraction)
     implementation project(Modules.network)
-
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
-}
-
-repositories {
-    google()
 }

@@ -1,11 +1,11 @@
 package isfaaghyth.app.movies.domain
 
-import com.nhaarman.mockitokotlin2.whenever
+import isfaaghyth.app.movies.BuildConfig
 import isfaaghyth.app.movies.data.model.Movie
 import isfaaghyth.app.movies.data.model.Movies
 import isfaaghyth.app.movies.data.repository.MovieRepository
+import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -32,11 +32,13 @@ class MovieUseCaseTest {
         useCase = MovieUseCase(repository)
     }
 
-    @Test fun `should return movie response`() = runBlocking {
-        whenever(useCase.getPopularMovie()).thenReturn(Movies(movies))
-        verify(useCase, atLeastOnce()).getPopularMovie().resultsIntent
-        verifyNoMoreInteractions(useCase)
-        clearInvocations(useCase)
+    @Test fun `should size of result is not empty`() {
+        val result = runBlocking {
+            `when`(repository.getPopularMovie(BuildConfig.API_KEY))
+                .thenReturn(CompletableDeferred(Movies(movies)))
+            useCase.getPopularMovie()
+        }
+        assert(result.resultsIntent.isNotEmpty())
     }
 
 }
