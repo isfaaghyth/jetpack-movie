@@ -15,8 +15,11 @@ class MovieDetailActivity: BaseActivity() {
 
     override fun initView() {
         try {
-            getMovieData()
-            getTvShowData()
+            if (intent?.hasExtra(MOVIE_KEY)!!) {
+                getMovieData()
+            } else if (intent?.hasExtra(TV_SHOW_KEY)!!) {
+                getTvShowData()
+            }
         } catch (e: Exception) {
             toast("something wrong!")
             finish()
@@ -37,7 +40,16 @@ class MovieDetailActivity: BaseActivity() {
     }
 
     private fun getTvShowData() {
-
+        intent?.let {
+            val tvshow = it.getParcelableExtra<TVShow>(TV_SHOW_KEY)
+            imgBanner.load(tvshow.bannerUrl())
+            imgPoster.load(tvshow.posterUrl())
+            txtMovieName.text = tvshow.title
+            txtContent.text = tvshow.overview
+            txtYear.text = tvshow.releaseDate
+            txtRating.text = "${tvshow.voteAverage}"
+            txtVote.text = "${tvshow.voteCount}"
+        }
     }
 
     override fun initInjector() = Unit //Nothing to inject

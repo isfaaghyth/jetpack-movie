@@ -53,12 +53,12 @@ data class TVShow(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<Movie> {
-        override fun createFromParcel(parcel: Parcel): Movie {
-            return Movie(parcel)
+    companion object CREATOR : Parcelable.Creator<TVShow> {
+        override fun createFromParcel(parcel: Parcel): TVShow {
+            return TVShow(parcel)
         }
 
-        override fun newArray(size: Int): Array<Movie?> {
+        override fun newArray(size: Int): Array<TVShow?> {
             return arrayOfNulls(size)
         }
     }
