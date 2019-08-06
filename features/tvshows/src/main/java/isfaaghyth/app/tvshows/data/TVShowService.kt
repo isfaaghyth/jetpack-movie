@@ -1,5 +1,6 @@
 package isfaaghyth.app.tvshows.data
 
+import isfaaghyth.app.data.TVShows
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -7,8 +8,8 @@ import retrofit2.http.Query
 interface TVShowService {
 
     @GET("tv/popular")
-    fun getTVShow(
+    fun getPopularTVShow(
         @Query("api_key") apiKey: String
-    ): Deferred<Any>
+    ): Deferred<TVShows>
 
 }

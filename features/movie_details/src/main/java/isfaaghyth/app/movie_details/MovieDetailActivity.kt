@@ -6,6 +6,7 @@ import isfaaghyth.app.abstraction.base.BaseActivity
 import isfaaghyth.app.abstraction.util.load
 import isfaaghyth.app.abstraction.util.toast
 import isfaaghyth.app.data.Movie
+import isfaaghyth.app.data.TVShow
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 
 class MovieDetailActivity: BaseActivity() {
@@ -51,9 +52,9 @@ class MovieDetailActivity: BaseActivity() {
             return intent
         }
 
-        fun tvShowIntent(context: Context): Intent {
+        fun tvShowIntent(context: Context, tvShow: TVShow): Intent {
             val intent = Intent(context, MovieDetailActivity::class.java)
-            intent.putExtra(MOVIE_KEY, "")
+            intent.putExtra(TV_SHOW_KEY, tvShow)
             return intent
         }
     }

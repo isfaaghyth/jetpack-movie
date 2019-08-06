@@ -1,9 +1,3 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="isfaaghyth.app.tvshows">
-
-    <application>
-        <activity android:name=".ui.TVShowActivity"/>
-    </application>
-
-</manifest>
+    package="isfaaghyth.app.tvshows"/>

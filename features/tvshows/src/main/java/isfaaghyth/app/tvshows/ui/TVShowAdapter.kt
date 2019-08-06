@@ -1,25 +1,25 @@
-package isfaaghyth.app.movies.ui
+package isfaaghyth.app.tvshows.ui
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import isfaaghyth.app.abstraction.util.load
-import isfaaghyth.app.data.Movie
+import isfaaghyth.app.data.TVShow
 import isfaaghyth.app.movie_details.MovieDetailActivity
-import isfaaghyth.app.movies.R
-import kotlinx.android.synthetic.main.item_movie.view.*
+import isfaaghyth.app.tvshows.R
+import kotlinx.android.synthetic.main.item_tvshow.view.*
 
-class MovieAdapter(private val movie: List<Movie>): RecyclerView.Adapter<MovieAdapter.Holder>() {
+class TVShowAdapter(private val tvshows: List<TVShow>): RecyclerView.Adapter<TVShowAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder.inflate(parent)
     }
 
-    override fun getItemCount(): Int = movie.size
+    override fun getItemCount(): Int = tvshows.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(movie[position])
+        holder.bind(tvshows[position])
     }
 
     class Holder(private val view: View): RecyclerView.ViewHolder(view) {
@@ -32,20 +32,20 @@ class MovieAdapter(private val movie: List<Movie>): RecyclerView.Adapter<MovieAd
             fun inflate(parent: ViewGroup): Holder {
                 return Holder(
                     LayoutInflater.from(parent.context).inflate(
-                        R.layout.item_movie,
+                        R.layout.item_tvshow,
                         parent,
                         false)
                 )
             }
         }
 
-        fun bind(movie: Movie) {
-            title.text = movie.title
-            year.text = movie.releaseDate
-            poster.load(movie.bannerUrl())
+        fun bind(tvshow: TVShow) {
+            title.text = tvshow.title
+            year.text = tvshow.releaseDate
+            poster.load(tvshow.bannerUrl())
             cardItem.setOnClickListener {
                 val context = view.context
-                context.startActivity(MovieDetailActivity.movieIntent(context, movie))
+                context.startActivity(MovieDetailActivity.tvShowIntent(context, tvshow))
             }
         }
     }

@@ -59,7 +59,7 @@ class MovieFragment: Fragment() {
             when (state) {
                 is MovieState.ShowLoading -> toast("loading")
                 is MovieState.HideLoading -> toast("complete")
-                is MovieState.LoadMovieSuccess -> {
+                is MovieState.LoadSuccess -> {
                     movieData.addAll(state.data.resultsIntent)
                     adapter.notifyDataSetChanged()
                 }
