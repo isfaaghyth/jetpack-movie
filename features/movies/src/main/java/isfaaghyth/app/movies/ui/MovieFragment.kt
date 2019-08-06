@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import isfaaghyth.app.abstraction.util.MarginItemDecoration
 import isfaaghyth.app.abstraction.util.toast
 import isfaaghyth.app.movies.R
 import isfaaghyth.app.data.Movie
@@ -43,7 +44,6 @@ class MovieFragment: Fragment() {
             .of(this, viewModelFactory)
             .get(MovieViewModel::class.java)
 
-        //layout manager
         lstMovies.adapter = adapter
 
         //get movies

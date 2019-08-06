@@ -5,6 +5,7 @@ dependencies {
     implementation Android.appCompat
     implementation Android.ktx
     implementation Android.constraintLayout
+    implementation Android.cardView
 
     //modules
     implementation project(Modules.abstraction)

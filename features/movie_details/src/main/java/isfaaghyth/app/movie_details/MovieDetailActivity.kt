@@ -3,8 +3,10 @@ package isfaaghyth.app.movie_details
 import android.content.Context
 import android.content.Intent
 import isfaaghyth.app.abstraction.base.BaseActivity
+import isfaaghyth.app.abstraction.util.load
 import isfaaghyth.app.abstraction.util.toast
 import isfaaghyth.app.data.Movie
+import kotlinx.android.synthetic.main.activity_movie_detail.*
 
 class MovieDetailActivity: BaseActivity() {
 
@@ -23,11 +25,18 @@ class MovieDetailActivity: BaseActivity() {
     private fun getMovieData() {
         intent?.let {
             val movie = it.getParcelableExtra<Movie>(MOVIE_KEY)
-            toast(movie.title)
+            imgBanner.load(movie.bannerUrl())
+            imgPoster.load(movie.posterUrl())
+            txtMovieName.text = movie.title
+            txtContent.text = movie.overview
+            txtYear.text = movie.releaseDate
+            txtRating.text = "${movie.voteAverage}"
+            txtVote.text = "${movie.voteCount}"
         }
     }
 
     private fun getTvShowData() {
+
     }
 
     override fun initInjector() = Unit //Nothing to inject

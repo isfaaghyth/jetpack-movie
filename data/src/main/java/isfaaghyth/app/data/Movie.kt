@@ -16,12 +16,14 @@ data class Movie(
     @Expose @SerializedName("poster_path") val posterPath: String,
     @Expose @SerializedName("overview") val overview: String,
     @Expose @SerializedName("backdrop_path") val backdropPath: String,
+    @Expose @SerializedName("vote_count") val voteCount: Int,
+    @Expose @SerializedName("vote_average") val voteAverage: Float,
     @Expose @SerializedName("release_date") val releaseDate: String
 ): Parcelable {
 
-    fun bannerUrl(): String {
-        return "${BuildConfig.IMAGE_URL}$backdropPath"
-    }
+    fun bannerUrl() = "${BuildConfig.IMAGE_URL}$backdropPath"
+
+    fun posterUrl() = "${BuildConfig.IMAGE_URL}$posterPath"
 
     constructor(parcel: Parcel) : this(
         parcel.readString()?: "",
@@ -30,6 +32,8 @@ data class Movie(
         parcel.readString()?: "",
         parcel.readString()?: "",
         parcel.readString()?: "",
+        parcel.readInt(),
+        parcel.readFloat(),
         parcel.readString()?: ""
     )
 
@@ -40,6 +44,8 @@ data class Movie(
         parcel.writeString(posterPath)
         parcel.writeString(overview)
         parcel.writeString(backdropPath)
+        parcel.writeInt(voteCount)
+        parcel.writeFloat(voteAverage)
         parcel.writeString(releaseDate)
     }
 

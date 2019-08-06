@@ -61,6 +61,7 @@ object Version {
 object Android {
     val constraintLayout = "androidx.constraintlayout:constraintlayout:${Version.constraintLayout}"
     val appCompat = "androidx.appcompat:appcompat:${Version.appCompat}"
+    val cardView = "androidx.cardview:cardview:${Version.appCompat}"
     val ktx = "androidx.core:core-ktx:${Version.ktx}"
     val gson = "com.google.code.gson:gson:${Version.gson}"
 }
