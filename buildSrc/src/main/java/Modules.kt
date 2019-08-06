@@ -15,4 +15,7 @@ object Modules {
     //libraries level
     val network = ":libraries:network"
     val abstraction = ":libraries:abstraction"
+
+    //data level
+    val data = ":data"
 }

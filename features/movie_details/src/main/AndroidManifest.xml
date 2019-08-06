@@ -7,8 +7,9 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="moviedb"
-                      android:host="detail"/>
+                <data android:scheme="jetmovie" />
+                <data android:host="movie" />
+                <data android:host="tvshow" />
             </intent-filter>
         </activity>
     </application>

@@ -9,3 +9,6 @@ include Modules.movieDetail
 //libraries
 include Modules.network
 include Modules.abstraction
+
+//data
+include Modules.data

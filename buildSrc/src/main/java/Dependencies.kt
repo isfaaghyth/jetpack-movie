@@ -39,6 +39,9 @@ object Version {
     //media
     const val glide = "4.8.0"
 
+    //data
+    const val gson = "2.8.5"
+
     //jetpack
     const val archLifecycle = "2.0.0"
     const val recyclerView = "1.0.0"
@@ -59,6 +62,7 @@ object Android {
     val constraintLayout = "androidx.constraintlayout:constraintlayout:${Version.constraintLayout}"
     val appCompat = "androidx.appcompat:appcompat:${Version.appCompat}"
     val ktx = "androidx.core:core-ktx:${Version.ktx}"
+    val gson = "com.google.code.gson:gson:${Version.gson}"
 }
 
 object Jetpack {

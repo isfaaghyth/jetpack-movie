@@ -1,6 +1,6 @@
 package isfaaghyth.app.movies.data.repository
 
-import isfaaghyth.app.movies.data.model.Movies
+import isfaaghyth.app.data.Movies
 import kotlinx.coroutines.Deferred
 
 interface MovieRepository {

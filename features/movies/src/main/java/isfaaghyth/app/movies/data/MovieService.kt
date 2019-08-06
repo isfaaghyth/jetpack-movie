@@ -1,6 +1,6 @@
 package isfaaghyth.app.movies.data
 
-import isfaaghyth.app.movies.data.model.Movies
+import isfaaghyth.app.data.Movies
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query

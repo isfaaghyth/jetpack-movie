@@ -2,16 +2,14 @@ package isfaaghyth.app.movies.ui
 
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import isfaaghyth.app.abstraction.util.load
-import isfaaghyth.app.movies.BuildConfig
 import isfaaghyth.app.movies.R
-import isfaaghyth.app.movies.data.model.Movie
+import isfaaghyth.app.data.Movie
+import isfaaghyth.app.movie_details.MovieDetailActivity
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 class MovieAdapter(private val movie: List<Movie>): RecyclerView.Adapter<MovieAdapter.Holder>() {
@@ -48,8 +46,8 @@ class MovieAdapter(private val movie: List<Movie>): RecyclerView.Adapter<MovieAd
             year.text = movie.releaseDate
             poster.load(movie.bannerUrl())
             cardItem.setOnClickListener {
-                val uri = Uri.parse(movie.applinkMovie())
-                view.context.startActivity(Intent(Intent.ACTION_VIEW, uri))
+                val context = view.context
+                context.startActivity(MovieDetailActivity.movieIntent(context, movie))
             }
         }
     }

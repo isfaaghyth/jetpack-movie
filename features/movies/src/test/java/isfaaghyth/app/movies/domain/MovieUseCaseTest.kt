@@ -1,10 +1,9 @@
 package isfaaghyth.app.movies.domain
 
 import isfaaghyth.app.movies.BuildConfig
-import isfaaghyth.app.movies.data.model.Movie
-import isfaaghyth.app.movies.data.model.Movies
+import isfaaghyth.app.data.Movie
+import isfaaghyth.app.data.Movies
 import isfaaghyth.app.movies.data.repository.MovieRepository
-import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -19,13 +18,15 @@ class MovieUseCaseTest {
     private lateinit var useCase: MovieUseCase
 
     private val movies = listOf(
-        Movie("id",
+        Movie(
+            "id",
             "movieId",
             "title",
             "posterPath",
             "overview",
             "backdrop",
-            "relateDate")
+            "relateDate"
+        )
     )
 
     @Before fun setUp() {

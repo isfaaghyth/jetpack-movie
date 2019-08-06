@@ -1,10 +1,9 @@
-package isfaaghyth.app.movies.data.model
+package isfaaghyth.app.data
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import isfaaghyth.app.movies.BuildConfig
 
 data class Movies(
     @Expose @SerializedName("results") val resultsIntent: List<Movie>
@@ -22,10 +21,6 @@ data class Movie(
 
     fun bannerUrl(): String {
         return "${BuildConfig.IMAGE_URL}$backdropPath"
-    }
-
-    fun applinkMovie(): String {
-        return "moviedb://detail/$id"
     }
 
     constructor(parcel: Parcel) : this(

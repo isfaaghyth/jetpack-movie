@@ -8,4 +8,5 @@ dependencies {
 
     //modules
     implementation project(Modules.abstraction)
+    implementation project(Modules.data)
 }

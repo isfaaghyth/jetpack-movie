@@ -28,4 +28,8 @@ dependencies {
     //modules
     implementation project(Modules.abstraction)
     implementation project(Modules.network)
+    implementation project(Modules.data)
+
+    //movie_detail features (easily purpose, just pass it with parcelable)
+    implementation project(Modules.movieDetail)
 }

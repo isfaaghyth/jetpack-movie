@@ -53,7 +53,6 @@ dependencies {
 
     /* Feature Module should add below */
     implementation project(Modules.movies)
-    implementation project(Modules.movieDetail)
 }
 
 repositories {

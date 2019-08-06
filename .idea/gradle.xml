@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/movie_details" />
             <option value="$PROJECT_DIR$/features/movies" />

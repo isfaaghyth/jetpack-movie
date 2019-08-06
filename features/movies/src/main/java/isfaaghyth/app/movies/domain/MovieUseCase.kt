@@ -1,7 +1,7 @@
 package isfaaghyth.app.movies.domain
 
 import isfaaghyth.app.movies.BuildConfig
-import isfaaghyth.app.movies.data.model.Movies
+import isfaaghyth.app.data.Movies
 import isfaaghyth.app.movies.data.repository.MovieRepository
 import javax.inject.Inject
 
