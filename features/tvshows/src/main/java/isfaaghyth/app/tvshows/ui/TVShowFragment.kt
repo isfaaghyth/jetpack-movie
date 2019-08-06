@@ -48,13 +48,10 @@ class TVShowFragment: Fragment() {
         lstTvShows.adapter = adapter
 
         //get movies
-        getMovie()
+        initObserver()
     }
 
-    private fun getMovie() {
-        //get movie
-        viewModel.getPopularTVShow()
-
+    private fun initObserver() {
         //observe it!
         viewModel.state.observe(this, Observer { state ->
             when (state) {

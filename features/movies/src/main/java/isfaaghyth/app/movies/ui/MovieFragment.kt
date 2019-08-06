@@ -47,13 +47,10 @@ class MovieFragment: Fragment() {
         lstMovies.adapter = adapter
 
         //get movies
-        getMovie()
+        initObserver()
     }
 
-    private fun getMovie() {
-        //get movie
-        viewModel.getPopularMovie()
-
+    private fun initObserver() {
         //observe it!
         viewModel.state.observe(this, Observer { state ->
             when (state) {

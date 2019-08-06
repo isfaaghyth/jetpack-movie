@@ -21,6 +21,10 @@ class MovieViewModel @Inject constructor(
     val state: LiveData<MovieState>
         get() = _state
 
+    init {
+        getPopularMovie()
+    }
+
     override fun getPopularMovie() {
         _state.value = MovieState.ShowLoading
         CoroutineScope(Dispatchers.IO).launch {

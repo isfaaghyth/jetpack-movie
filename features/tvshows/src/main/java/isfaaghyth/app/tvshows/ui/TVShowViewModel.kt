@@ -21,6 +21,10 @@ class TVShowViewModel @Inject constructor(
     val state: LiveData<TVShowState>
         get() = _state
 
+    init {
+        getPopularTVShow()
+    }
+
     override fun getPopularTVShow() {
         _state.value = TVShowState.ShowLoading
         CoroutineScope(Dispatchers.IO).launch {
