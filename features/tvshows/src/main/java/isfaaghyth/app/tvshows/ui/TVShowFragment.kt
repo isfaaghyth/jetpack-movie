@@ -1,4 +1,4 @@
-package isfaaghyth.app.movies.ui
+package isfaaghyth.app.tvshows.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,24 +8,24 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import isfaaghyth.app.abstraction.util.MarginItemDecoration
 import isfaaghyth.app.abstraction.util.toast
-import isfaaghyth.app.movies.R
-import isfaaghyth.app.data.Movie
-import isfaaghyth.app.movies.di.DaggerMovieComponent
-import kotlinx.android.synthetic.main.fragment_movie.*
+import isfaaghyth.app.data.TVShow
+import isfaaghyth.app.tvshows.R
+import isfaaghyth.app.tvshows.di.DaggerTVShowComponent
+import kotlinx.android.synthetic.main.fragment_tvshow.*
 import javax.inject.Inject
 
-class MovieFragment: Fragment() {
+class TVShowFragment: Fragment() {
 
-    private fun contentView(): Int = R.layout.fragment_movie
+    private fun contentView(): Int = R.layout.fragment_tvshow
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: MovieViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var viewModel: TVShowViewModel
 
-    private var movieData = arrayListOf<Movie>()
-    private val adapter: MovieAdapter by lazy {
-        MovieAdapter(movieData)
+    private var tvshowData = arrayListOf<TVShow>()
+    private val adapter: TVShowAdapter by lazy {
+        TVShowAdapter(tvshowData)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,9 +42,10 @@ class MovieFragment: Fragment() {
         //view model provider
         viewModel = ViewModelProviders
             .of(this, viewModelFactory)
-            .get(MovieViewModel::class.java)
+            .get(TVShowViewModel::class.java)
 
-        lstMovies.adapter = adapter
+        //set adapter
+        lstTvShows.adapter = adapter
 
         //get movies
         getMovie()
@@ -52,18 +53,18 @@ class MovieFragment: Fragment() {
 
     private fun getMovie() {
         //get movie
-        viewModel.getPopularMovie()
+        viewModel.getPopularTVShow()
 
         //observe it!
         viewModel.state.observe(this, Observer { state ->
             when (state) {
-                is MovieState.ShowLoading -> toast("loading")
-                is MovieState.HideLoading -> toast("complete")
-                is MovieState.LoadSuccess -> {
-                    movieData.addAll(state.data.resultsIntent)
+                is TVShowState.ShowLoading -> toast("loading")
+                is TVShowState.HideLoading -> toast("complete")
+                is TVShowState.LoadSuccess -> {
+                    tvshowData.addAll(state.data.resultsIntent)
                     adapter.notifyDataSetChanged()
                 }
-                is MovieState.MovieError -> {
+                is TVShowState.MovieError -> {
                     toast("there's problem, please try again")
                 }
             }
@@ -71,14 +72,14 @@ class MovieFragment: Fragment() {
     }
 
     private fun initInjector() {
-        DaggerMovieComponent.builder()
-            .movieModule(MovieModule())
+        DaggerTVShowComponent.builder()
+            .tVShowModule(TVShowModule())
             .build()
             .inject(this)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         viewModel.clear()
     }
 

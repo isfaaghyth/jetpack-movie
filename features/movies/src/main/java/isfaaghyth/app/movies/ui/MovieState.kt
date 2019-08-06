@@ -8,5 +8,5 @@ sealed class MovieState {
     object HideLoading: MovieState()
 
     data class MovieError(val error: HttpException): MovieState()
-    data class LoadMovieSuccess(val data: Movies): MovieState()
+    data class LoadSuccess(val data: Movies): MovieState()
 }

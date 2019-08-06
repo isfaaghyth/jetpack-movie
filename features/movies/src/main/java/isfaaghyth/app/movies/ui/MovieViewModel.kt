@@ -18,7 +18,6 @@ class MovieViewModel @Inject constructor(
 ): BaseViewModel(dispatcher), MovieContract {
 
     private val _state = MutableLiveData<MovieState>()
-
     val state: LiveData<MovieState>
         get() = _state
 
@@ -29,7 +28,7 @@ class MovieViewModel @Inject constructor(
                 val result = useCase.getPopularMovie()
                 withContext(Dispatchers.Main) {
                     _state.value = MovieState.HideLoading
-                    _state.postValue(MovieState.LoadMovieSuccess(result))
+                    _state.postValue(MovieState.LoadSuccess(result))
                 }
             } catch (e: HttpException) {
                 withContext(Dispatchers.Main) {
