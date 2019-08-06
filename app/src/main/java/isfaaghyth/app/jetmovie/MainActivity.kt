@@ -16,8 +16,13 @@ class MainActivity : AppCompatActivity() {
         //default
         fragmentReplace(MovieFragment())
 
-        btnMovie.setOnClickListener { fragmentReplace(MovieFragment()) }
-        btnTvShow.setOnClickListener { fragmentReplace(TVShowFragment()) }
+        btnMovie.setOnClickListener {
+            fragmentReplace(MovieFragment())
+        }
+
+        btnTvShow.setOnClickListener {
+            fragmentReplace(TVShowFragment())
+        }
     }
 
     private fun fragmentReplace(fragment: Fragment) {
