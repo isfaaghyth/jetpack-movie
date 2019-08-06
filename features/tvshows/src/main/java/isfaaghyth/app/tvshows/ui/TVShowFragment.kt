@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import isfaaghyth.app.abstraction.util.toast
 import isfaaghyth.app.data.TVShow
 import isfaaghyth.app.tvshows.R
 import isfaaghyth.app.tvshows.di.DaggerTVShowComponent
+import kotlinx.android.synthetic.main.fragment_tvshow.*
 import javax.inject.Inject
 
 class TVShowFragment: Fragment() {
@@ -41,7 +44,31 @@ class TVShowFragment: Fragment() {
             .of(this, viewModelFactory)
             .get(TVShowViewModel::class.java)
 
+        //set adapter
+        lstTvShows.adapter = adapter
 
+        //get movies
+        getMovie()
+    }
+
+    private fun getMovie() {
+        //get movie
+        viewModel.getPopularTVShow()
+
+        //observe it!
+        viewModel.state.observe(this, Observer { state ->
+            when (state) {
+                is TVShowState.ShowLoading -> toast("loading")
+                is TVShowState.HideLoading -> toast("complete")
+                is TVShowState.LoadSuccess -> {
+                    tvshowData.addAll(state.data.resultsIntent)
+                    adapter.notifyDataSetChanged()
+                }
+                is TVShowState.MovieError -> {
+                    toast("there's problem, please try again")
+                }
+            }
+        })
     }
 
     private fun initInjector() {

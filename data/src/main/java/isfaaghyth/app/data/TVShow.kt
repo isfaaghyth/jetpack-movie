@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class TVShows(
-    @Expose @SerializedName("results") val resultsIntent: List<Movie>
+    @Expose @SerializedName("results") val resultsIntent: List<TVShow>
 )
 
 data class TVShow(
