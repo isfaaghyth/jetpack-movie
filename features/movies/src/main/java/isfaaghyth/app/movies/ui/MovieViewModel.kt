@@ -3,9 +3,10 @@ package isfaaghyth.app.movies.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import isfaaghyth.app.abstraction.base.BaseViewModel
+import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
+import isfaaghyth.app.data.Movie
 import isfaaghyth.app.movies.domain.MovieUseCase
 import kotlinx.coroutines.*
-import retrofit2.HttpException
 import javax.inject.Inject
 
 interface MovieContract {
@@ -14,12 +15,20 @@ interface MovieContract {
 
 class MovieViewModel @Inject constructor(
     private val useCase: MovieUseCase,
-    dispatcher: CoroutineDispatcher
+    dispatcher: SchedulerProvider
 ): BaseViewModel(dispatcher), MovieContract {
 
     private val _state = MutableLiveData<MovieState>()
     val state: LiveData<MovieState>
         get() = _state
+
+    private val _result = MutableLiveData<List<Movie>>()
+    val result: LiveData<List<Movie>>
+        get() = _result
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
 
     init {
         getPopularMovie()
@@ -27,17 +36,13 @@ class MovieViewModel @Inject constructor(
 
     override fun getPopularMovie() {
         _state.value = MovieState.ShowLoading
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val result = useCase.getPopularMovie()
-                withContext(Dispatchers.Main) {
-                    _state.value = MovieState.HideLoading
-                    _state.postValue(MovieState.LoadSuccess(result))
-                }
-            } catch (e: HttpException) {
-                withContext(Dispatchers.Main) {
-                    _state.value = MovieState.HideLoading
-                    _state.postValue(MovieState.MovieError(e))
+        launch(coroutineContext) {
+            val result = useCase.getPopularMovie()
+            withContext(Dispatchers.Main) {
+                _state.value = MovieState.HideLoading
+                when (result) {
+                    is MovieState.LoadSuccess -> _result.postValue(result.data.resultsIntent)
+                    is MovieState.MovieError -> _error.postValue(result.error.message)
                 }
             }
         }

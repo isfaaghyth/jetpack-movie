@@ -4,12 +4,18 @@ import isfaaghyth.app.movies.BuildConfig
 import isfaaghyth.app.data.Movie
 import isfaaghyth.app.data.Movies
 import isfaaghyth.app.movies.data.repository.MovieRepository
+import isfaaghyth.app.movies.ui.MovieState
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import okhttp3.MediaType
+import okhttp3.ResponseBody
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.*
+import retrofit2.Response
+import java.io.IOException
 
 @ExperimentalCoroutinesApi
 class MovieUseCaseTest {
@@ -25,6 +31,8 @@ class MovieUseCaseTest {
             "posterPath",
             "overview",
             "backdrop",
+            0,
+            0f,
             "relateDate"
         )
     )
@@ -33,13 +41,28 @@ class MovieUseCaseTest {
         useCase = MovieUseCase(repository)
     }
 
-    @Test fun `should size of result is not empty`() {
+    @Test fun `should return success`() {
+        val apiKey = BuildConfig.API_KEY
+        val actual = MovieState.LoadSuccess(Movies(movies))
         val result = runBlocking {
-            `when`(repository.getPopularMovie(BuildConfig.API_KEY))
-                .thenReturn(CompletableDeferred(Movies(movies)))
+            `when`(repository.getPopularMovie(apiKey))
+                .thenReturn(CompletableDeferred(Response.success(Movies(movies))))
             useCase.getPopularMovie()
         }
-        assert(result.resultsIntent.isNotEmpty())
+        assert(result == actual)
+    }
+
+    @Test fun `should return error`() {
+        val apiKey = ""
+        val actual = MovieState.MovieError(IOException())
+        val result = runBlocking {
+            `when`(repository.getPopularMovie(apiKey))
+                .thenReturn(CompletableDeferred(
+                    Response.error(401, ResponseBody.create(MediaType.parse("application/json"), ""))
+                ))
+            useCase.getPopularMovie(apiKey)
+        }
+        assert(result == actual)
     }
 
 }

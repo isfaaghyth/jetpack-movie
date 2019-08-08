@@ -45,6 +45,10 @@ dependencies {
     testImplementation Testing.jUnit
     testImplementation Testing.mockito
     testImplementation Testing.mockKtRunner
+    testImplementation Testing.androidX
+    testImplementation Coroutines.core
+    testImplementation Coroutines.android
+    testImplementation Coroutines.test
     androidTestImplementation Testing.testRunner
     androidTestImplementation Testing.espresso
 }

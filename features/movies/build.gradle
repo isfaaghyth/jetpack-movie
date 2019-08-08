@@ -21,10 +21,6 @@ dependencies {
     implementation Jetpack.lifecycle
     kapt Jetpack.lifecycleCompiler
 
-    //coroutines
-    implementation Coroutines.core
-    implementation Coroutines.android
-
     //modules
     implementation project(Modules.abstraction)
     implementation project(Modules.network)

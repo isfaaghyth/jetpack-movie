@@ -3,6 +3,7 @@ package isfaaghyth.app.tvshows.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import isfaaghyth.app.abstraction.base.BaseViewModel
+import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
 import isfaaghyth.app.tvshows.domain.TVShowUseCase
 import kotlinx.coroutines.*
 import retrofit2.HttpException
@@ -14,7 +15,7 @@ interface TVShowContract {
 
 class TVShowViewModel @Inject constructor(
     private val useCase: TVShowUseCase,
-    dispatcher: CoroutineDispatcher
+    dispatcher: SchedulerProvider
 ): BaseViewModel(dispatcher), TVShowContract {
 
     private val _state = MutableLiveData<TVShowState>()
@@ -27,7 +28,7 @@ class TVShowViewModel @Inject constructor(
 
     override fun getPopularTVShow() {
         _state.value = TVShowState.ShowLoading
-        CoroutineScope(Dispatchers.IO).launch {
+        launch(coroutineContext) {
             try {
                 val result = useCase.getPopularTvShow()
                 withContext(Dispatchers.Main) {

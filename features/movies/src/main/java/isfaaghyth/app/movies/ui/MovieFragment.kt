@@ -51,19 +51,18 @@ class MovieFragment: Fragment() {
     }
 
     private fun initObserver() {
-        //observe it!
         viewModel.state.observe(this, Observer { state ->
             when (state) {
                 is MovieState.ShowLoading -> toast("loading")
                 is MovieState.HideLoading -> toast("complete")
-                is MovieState.LoadSuccess -> {
-                    movieData.addAll(state.data.resultsIntent)
-                    adapter.notifyDataSetChanged()
-                }
-                is MovieState.MovieError -> {
-                    toast("there's problem, please try again")
-                }
             }
+        })
+        viewModel.result.observe(this, Observer {
+            movieData.addAll(it)
+            adapter.notifyDataSetChanged()
+        })
+        viewModel.error.observe(this, Observer {
+            errorMessage -> toast(errorMessage)
         })
     }
 

@@ -2,6 +2,8 @@ package isfaaghyth.app.tvshows.ui
 
 import dagger.Module
 import dagger.Provides
+import isfaaghyth.app.abstraction.util.thread.ApplicationSchedulerProvider
+import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
 import isfaaghyth.app.network.Network
 import isfaaghyth.app.tvshows.data.TVShowService
 import isfaaghyth.app.tvshows.data.repository.TVShowRepository
@@ -29,6 +31,6 @@ import kotlinx.coroutines.Dispatchers
     }
 
     @TVShowScope @Provides
-    fun provideMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
+    fun provideSchedulerProvider(): SchedulerProvider = ApplicationSchedulerProvider()
 
 }

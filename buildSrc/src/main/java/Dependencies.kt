@@ -90,6 +90,7 @@ object Retrofit {
 object Coroutines {
     val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.coroutines}"
     val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutines}"
+    val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutines}"
 }
 
 object Glide {
@@ -111,4 +112,5 @@ object Testing {
     val espresso = "androidx.test.espresso:espresso-core:${Version.espresso}"
     val mockito = "org.mockito:mockito-inline:${Version.mockito}"
     val mockKtRunner = "de.jodamob.kotlin:kotlin-runner-junit4:${Version.mockTestRunner}"
+    val androidX = "androidx.arch.core:core-testing:${Version.archLifecycle}"
 }
