@@ -62,7 +62,7 @@ class MovieFragment: Fragment() {
             adapter.notifyDataSetChanged()
         })
         viewModel.error.observe(this, Observer {
-            errorMessage -> toast(errorMessage)
+            error -> toast(error)
         })
     }
 

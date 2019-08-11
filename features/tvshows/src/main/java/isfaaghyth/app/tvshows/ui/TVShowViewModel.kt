@@ -4,13 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import isfaaghyth.app.abstraction.base.BaseViewModel
 import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
+import isfaaghyth.app.data.TVShow
 import isfaaghyth.app.tvshows.domain.TVShowUseCase
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 import javax.inject.Inject
 
 interface TVShowContract {
-    fun getPopularTVShow()
+    fun getPopularTvShow()
 }
 
 class TVShowViewModel @Inject constructor(
@@ -22,23 +23,27 @@ class TVShowViewModel @Inject constructor(
     val state: LiveData<TVShowState>
         get() = _state
 
+    private val _result = MutableLiveData<List<TVShow>>()
+    val result: LiveData<List<TVShow>>
+        get() = _result
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
+
     init {
-        getPopularTVShow()
+        getPopularTvShow()
     }
 
-    override fun getPopularTVShow() {
+    override fun getPopularTvShow() {
         _state.value = TVShowState.ShowLoading
-        launch(coroutineContext) {
-            try {
-                val result = useCase.getPopularTvShow()
-                withContext(Dispatchers.Main) {
-                    _state.value = TVShowState.HideLoading
-                    _state.postValue(TVShowState.LoadSuccess(result))
-                }
-            } catch (e: HttpException) {
-                withContext(Dispatchers.Main) {
-                    _state.value = TVShowState.HideLoading
-                    _state.postValue(TVShowState.MovieError(e))
+        launch {
+            val result = useCase.getPopularTvShow()
+            withContext(Dispatchers.Main) {
+                _state.value = TVShowState.HideLoading
+                when (result) {
+                    is TVShowState.LoadSuccess -> _result.postValue(result.data.resultsIntent)
+                    is TVShowState.MovieError -> _error.postValue(result.error.message)
                 }
             }
         }

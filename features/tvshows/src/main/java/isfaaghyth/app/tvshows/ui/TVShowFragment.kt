@@ -57,14 +57,14 @@ class TVShowFragment: Fragment() {
             when (state) {
                 is TVShowState.ShowLoading -> toast("loading")
                 is TVShowState.HideLoading -> toast("complete")
-                is TVShowState.LoadSuccess -> {
-                    tvshowData.addAll(state.data.resultsIntent)
-                    adapter.notifyDataSetChanged()
-                }
-                is TVShowState.MovieError -> {
-                    toast("there's problem, please try again")
-                }
             }
+        })
+        viewModel.result.observe(this, Observer {
+            tvshowData.addAll(it)
+            adapter.notifyDataSetChanged()
+        })
+        viewModel.error.observe(this, Observer {
+            error -> toast(error)
         })
     }
 
