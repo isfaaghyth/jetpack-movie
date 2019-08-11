@@ -1,9 +1,9 @@
 package isfaaghyth.app.movies.domain
 
-import isfaaghyth.app.movies.BuildConfig
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.data.entity.Movies
 import isfaaghyth.app.data.repository.movie.MovieRepository
+import isfaaghyth.app.movies.BuildConfig
 import isfaaghyth.app.movies.ui.MovieState
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -12,7 +12,8 @@ import okhttp3.MediaType
 import okhttp3.ResponseBody
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.*
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 import retrofit2.Response
 import java.io.IOException
 
@@ -52,16 +53,17 @@ class MovieUseCaseTest {
     }
 
     @Test fun `should return error`() {
-        val apiKey = ""
         val actual = MovieState.MovieError(IOException())
         val result = runBlocking {
-            `when`(repository.getPopularMovie(apiKey))
+            `when`(repository.getPopularMovie(""))
                 .thenReturn(CompletableDeferred(
                     Response.error(401, ResponseBody.create(MediaType.parse("application/json"), ""))
                 ))
-            useCase.getPopularMovie(apiKey)
+            useCase.getPopularMovie("")
         }
-        assert(result == actual)
+
+        //probably has different error message, so you can check by type of java class
+        assert(result.javaClass == actual.javaClass)
     }
 
 }

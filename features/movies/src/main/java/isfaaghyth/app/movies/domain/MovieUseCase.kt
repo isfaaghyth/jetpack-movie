@@ -3,9 +3,11 @@ package isfaaghyth.app.movies.domain
 import isfaaghyth.app.movies.BuildConfig
 import isfaaghyth.app.data.repository.movie.MovieRepository
 import isfaaghyth.app.movies.ui.MovieState
+import retrofit2.HttpException
 import java.io.IOException
 import java.lang.Exception
 import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 class MovieUseCase @Inject constructor(private val repository: MovieRepository) {
@@ -20,10 +22,10 @@ class MovieUseCase @Inject constructor(private val repository: MovieRepository) 
             } else {
                 MovieState.MovieError(IOException("Error occurred during fetching movies!"))
             }
-        } catch (e: Exception) {
-            MovieState.MovieError(IOException("Unable to fetch movies!"))
-        } catch (e: SocketTimeoutException) {
-            MovieState.MovieError(IOException("Time Out!"))
+        } catch (e: HttpException) {
+            MovieState.MovieError(IOException(e.message()))
+        } catch (e: Throwable) {
+            MovieState.MovieError(IOException(e.message))
         }
     }
 

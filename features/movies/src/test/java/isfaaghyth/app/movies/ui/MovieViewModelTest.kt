@@ -65,6 +65,8 @@ class MovieViewModelTest {
     @Test fun `should return a response of movies data`() = runBlocking {
         /* given */
         val returnValue = MovieState.LoadSuccess(moviesData)
+
+        /* when */
         `when`(useCase.getPopularMovie()).thenReturn(returnValue)
 
         /* do */
@@ -85,6 +87,8 @@ class MovieViewModelTest {
     @Test fun `should return an error without api key`() = runBlocking {
         /* given */
         val returnValue = MovieState.MovieError(IOException("API Key Not Found"))
+
+        /* when */
         `when`(useCase.getPopularMovie("")).thenReturn(returnValue)
 
         /* do */
