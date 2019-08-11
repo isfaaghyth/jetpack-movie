@@ -1,6 +1,6 @@
 package isfaaghyth.app.movies.ui
 
-import isfaaghyth.app.data.Movies
+import isfaaghyth.app.data.entity.Movies
 
 sealed class MovieState {
     object ShowLoading: MovieState()

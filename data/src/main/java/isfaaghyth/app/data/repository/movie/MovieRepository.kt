@@ -1,6 +1,6 @@
-package isfaaghyth.app.movies.data.repository
+package isfaaghyth.app.data.repository.movie
 
-import isfaaghyth.app.data.Movies
+import isfaaghyth.app.data.entity.Movies
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 

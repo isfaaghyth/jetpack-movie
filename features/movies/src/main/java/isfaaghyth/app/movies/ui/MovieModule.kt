@@ -4,24 +4,19 @@ import dagger.Module
 import dagger.Provides
 import isfaaghyth.app.abstraction.util.thread.ApplicationSchedulerProvider
 import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
-import isfaaghyth.app.movies.data.MovieService
-import isfaaghyth.app.movies.data.repository.MovieRepository
-import isfaaghyth.app.movies.data.repository.MovieRepositoryImpl
+import isfaaghyth.app.data.di.DataModule
+import isfaaghyth.app.data.di.DataScope
+import isfaaghyth.app.data.repository.movie.MovieRepository
+import isfaaghyth.app.data.repository.movie.MovieRepositoryImpl
+import isfaaghyth.app.data.service.NetworkServices
 import isfaaghyth.app.movies.di.MovieScope
 import isfaaghyth.app.movies.domain.MovieUseCase
-import isfaaghyth.app.network.Network.retrofitClient
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 
-@Module class MovieModule {
+@Module(includes = [DataModule::class])
+class MovieModule {
 
     @MovieScope @Provides
-    fun provideServices(): MovieService {
-        return retrofitClient().create(MovieService::class.java)
-    }
-
-    @MovieScope @Provides
-    fun provideRepository(service: MovieService): MovieRepository {
+    fun provideRepository(@DataScope service: NetworkServices): MovieRepository {
         return MovieRepositoryImpl(service)
     }
 

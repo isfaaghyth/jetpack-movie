@@ -1,6 +1,6 @@
 package isfaaghyth.app.tvshows.ui
 
-import isfaaghyth.app.data.TVShows
+import isfaaghyth.app.data.entity.TVShows
 
 sealed class TVShowState {
     object ShowLoading: TVShowState()

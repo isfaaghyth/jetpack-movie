@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import isfaaghyth.app.abstraction.util.toast
-import isfaaghyth.app.data.TVShow
+import isfaaghyth.app.data.entity.TVShow
 import isfaaghyth.app.tvshows.R
 import isfaaghyth.app.tvshows.di.DaggerTVShowComponent
 import kotlinx.android.synthetic.main.fragment_tvshow.*

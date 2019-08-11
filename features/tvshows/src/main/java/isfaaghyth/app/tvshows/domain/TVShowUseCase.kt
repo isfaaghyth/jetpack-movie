@@ -1,8 +1,7 @@
 package isfaaghyth.app.tvshows.domain
 
 import isfaaghyth.app.data.BuildConfig
-import isfaaghyth.app.data.TVShows
-import isfaaghyth.app.tvshows.data.repository.TVShowRepository
+import isfaaghyth.app.data.repository.tvshow.TVShowRepository
 import isfaaghyth.app.tvshows.ui.TVShowState
 import java.io.IOException
 import java.lang.Exception

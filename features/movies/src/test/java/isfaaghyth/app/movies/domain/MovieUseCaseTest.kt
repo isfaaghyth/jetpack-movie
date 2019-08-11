@@ -1,16 +1,15 @@
 package isfaaghyth.app.movies.domain
 
 import isfaaghyth.app.movies.BuildConfig
-import isfaaghyth.app.data.Movie
-import isfaaghyth.app.data.Movies
-import isfaaghyth.app.movies.data.repository.MovieRepository
+import isfaaghyth.app.data.entity.Movie
+import isfaaghyth.app.data.entity.Movies
+import isfaaghyth.app.data.repository.movie.MovieRepository
 import isfaaghyth.app.movies.ui.MovieState
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType
 import okhttp3.ResponseBody
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.*

@@ -1,5 +1,15 @@
 apply from: "$rootDir/common.gradle"
 
 dependencies {
+    //utilities
     implementation Android.gson
+
+    //network
+    implementation Retrofit.retrofit
+
+    //coroutines
+    implementation Coroutines.core
+
+    //modules
+    implementation project(Modules.network)
 }

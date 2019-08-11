@@ -8,10 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import isfaaghyth.app.abstraction.util.MarginItemDecoration
 import isfaaghyth.app.abstraction.util.toast
 import isfaaghyth.app.movies.R
-import isfaaghyth.app.data.Movie
+import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.movies.di.DaggerMovieComponent
 import kotlinx.android.synthetic.main.fragment_movie.*
 import javax.inject.Inject

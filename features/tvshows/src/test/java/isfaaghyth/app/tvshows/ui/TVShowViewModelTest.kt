@@ -3,8 +3,8 @@ package isfaaghyth.app.tvshows.ui
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import isfaaghyth.app.abstraction.util.thread.TestSchedulerProvider
-import isfaaghyth.app.data.TVShow
-import isfaaghyth.app.data.TVShows
+import isfaaghyth.app.data.entity.TVShow
+import isfaaghyth.app.data.entity.TVShows
 import isfaaghyth.app.tvshows.domain.TVShowUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

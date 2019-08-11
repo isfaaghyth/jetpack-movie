@@ -5,8 +5,8 @@ import android.content.Intent
 import isfaaghyth.app.abstraction.base.BaseActivity
 import isfaaghyth.app.abstraction.util.load
 import isfaaghyth.app.abstraction.util.toast
-import isfaaghyth.app.data.Movie
-import isfaaghyth.app.data.TVShow
+import isfaaghyth.app.data.entity.Movie
+import isfaaghyth.app.data.entity.TVShow
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 
 class MovieDetailActivity: BaseActivity() {

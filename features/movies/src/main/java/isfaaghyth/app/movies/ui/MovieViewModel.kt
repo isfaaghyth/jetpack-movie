@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import isfaaghyth.app.abstraction.base.BaseViewModel
 import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
-import isfaaghyth.app.data.Movie
+import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.movies.domain.MovieUseCase
 import kotlinx.coroutines.*
 import javax.inject.Inject

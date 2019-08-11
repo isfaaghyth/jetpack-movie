@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import isfaaghyth.app.abstraction.util.load
-import isfaaghyth.app.data.Movie
+import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.movie_details.MovieDetailActivity
 import isfaaghyth.app.movies.R
 import kotlinx.android.synthetic.main.item_movie.view.*

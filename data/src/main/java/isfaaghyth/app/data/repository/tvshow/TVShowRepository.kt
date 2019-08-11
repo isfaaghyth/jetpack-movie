@@ -1,6 +1,6 @@
-package isfaaghyth.app.tvshows.data.repository
+package isfaaghyth.app.data.repository.tvshow
 
-import isfaaghyth.app.data.TVShows
+import isfaaghyth.app.data.entity.TVShows
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 

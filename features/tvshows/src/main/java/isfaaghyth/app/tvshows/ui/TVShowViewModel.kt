@@ -4,10 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import isfaaghyth.app.abstraction.base.BaseViewModel
 import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
-import isfaaghyth.app.data.TVShow
+import isfaaghyth.app.data.entity.TVShow
 import isfaaghyth.app.tvshows.domain.TVShowUseCase
 import kotlinx.coroutines.*
-import retrofit2.HttpException
 import javax.inject.Inject
 
 interface TVShowContract {

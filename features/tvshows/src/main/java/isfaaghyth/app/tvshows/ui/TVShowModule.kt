@@ -4,24 +4,19 @@ import dagger.Module
 import dagger.Provides
 import isfaaghyth.app.abstraction.util.thread.ApplicationSchedulerProvider
 import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
-import isfaaghyth.app.network.Network
-import isfaaghyth.app.tvshows.data.TVShowService
-import isfaaghyth.app.tvshows.data.repository.TVShowRepository
-import isfaaghyth.app.tvshows.data.repository.TVShowRepositoryImpl
+import isfaaghyth.app.data.di.DataModule
+import isfaaghyth.app.data.di.DataScope
+import isfaaghyth.app.data.repository.tvshow.TVShowRepository
+import isfaaghyth.app.data.repository.tvshow.TVShowRepositoryImpl
+import isfaaghyth.app.data.service.NetworkServices
 import isfaaghyth.app.tvshows.di.TVShowScope
 import isfaaghyth.app.tvshows.domain.TVShowUseCase
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 
-@Module class TVShowModule {
-
-    @TVShowScope @Provides
-    fun provideServices(): TVShowService {
-        return Network.retrofitClient().create(TVShowService::class.java)
-    }
+@Module(includes = [DataModule::class])
+class TVShowModule {
 
     @TVShowScope @Provides
-    fun provideRepository(service: TVShowService): TVShowRepository {
+    fun provideRepository(@DataScope service: NetworkServices): TVShowRepository {
         return TVShowRepositoryImpl(service)
     }
 

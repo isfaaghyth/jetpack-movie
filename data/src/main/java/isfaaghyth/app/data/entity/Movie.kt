@@ -1,24 +1,25 @@
-package isfaaghyth.app.data
+package isfaaghyth.app.data.entity
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import isfaaghyth.app.data.BuildConfig
 
-data class TVShows(
-    @Expose @SerializedName("results") val resultsIntent: List<TVShow>
+data class Movies(
+    @Expose @SerializedName("results") val resultsIntent: List<Movie>
 )
 
-data class TVShow(
+data class Movie(
     @Expose @SerializedName("id") val id: String,
     @Expose @SerializedName("movie_id") val movieId: String,
-    @Expose @SerializedName("original_name") val title: String,
+    @Expose @SerializedName("original_title") val title: String,
     @Expose @SerializedName("poster_path") val posterPath: String,
     @Expose @SerializedName("overview") val overview: String,
     @Expose @SerializedName("backdrop_path") val backdropPath: String,
     @Expose @SerializedName("vote_count") val voteCount: Int,
     @Expose @SerializedName("vote_average") val voteAverage: Float,
-    @Expose @SerializedName("first_air_date") val releaseDate: String
+    @Expose @SerializedName("release_date") val releaseDate: String
 ): Parcelable {
 
     fun bannerUrl() = "${BuildConfig.IMAGE_URL}$backdropPath"
@@ -53,12 +54,12 @@ data class TVShow(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<TVShow> {
-        override fun createFromParcel(parcel: Parcel): TVShow {
-            return TVShow(parcel)
+    companion object CREATOR : Parcelable.Creator<Movie> {
+        override fun createFromParcel(parcel: Parcel): Movie {
+            return Movie(parcel)
         }
 
-        override fun newArray(size: Int): Array<TVShow?> {
+        override fun newArray(size: Int): Array<Movie?> {
             return arrayOfNulls(size)
         }
     }

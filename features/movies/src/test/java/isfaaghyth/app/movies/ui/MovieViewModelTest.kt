@@ -3,8 +3,8 @@ package isfaaghyth.app.movies.ui
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import isfaaghyth.app.abstraction.util.thread.TestSchedulerProvider
-import isfaaghyth.app.data.Movie
-import isfaaghyth.app.data.Movies
+import isfaaghyth.app.data.entity.Movie
+import isfaaghyth.app.data.entity.Movies
 import isfaaghyth.app.movies.domain.MovieUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

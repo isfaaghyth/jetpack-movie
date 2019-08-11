@@ -1,8 +1,7 @@
 package isfaaghyth.app.movies.domain
 
 import isfaaghyth.app.movies.BuildConfig
-import isfaaghyth.app.data.Movies
-import isfaaghyth.app.movies.data.repository.MovieRepository
+import isfaaghyth.app.data.repository.movie.MovieRepository
 import isfaaghyth.app.movies.ui.MovieState
 import java.io.IOException
 import java.lang.Exception
