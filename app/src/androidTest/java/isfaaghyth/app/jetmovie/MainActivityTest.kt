@@ -36,6 +36,7 @@ class MainActivityTest {
 
         //showing movies
         onView(withId(R.id.btnMovie)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnMovie)).perform(click())
 
         //check visibility of listMovies
         onView(withId(R.id.lstMovies)).check(matches(isDisplayed()))
@@ -61,6 +62,7 @@ class MainActivityTest {
 
         //showing movies
         onView(withId(R.id.btnTvShow)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnTvShow)).perform(click())
 
         //check visibility of listMovies
         onView(withId(R.id.lstTvShows)).check(matches(isDisplayed()))
