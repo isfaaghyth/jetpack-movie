@@ -12,6 +12,7 @@ class MovieUseCase @Inject constructor(private val repository: MovieRepository) 
 
     suspend fun getPopularMovie(apiKey: String = API_KEY): MovieState {
         val response = repository.getPopularMovie(apiKey).await()
+
         return try {
             if (response.isSuccessful) {
                 response.body()?.let {

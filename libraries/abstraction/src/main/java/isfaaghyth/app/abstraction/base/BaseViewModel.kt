@@ -9,7 +9,7 @@ import kotlin.coroutines.CoroutineContext
 
 abstract class BaseViewModel(private val baseDispatcher: SchedulerProvider): ViewModel(), CoroutineScope {
 
-    protected val supervisorJob = SupervisorJob()
+    private val supervisorJob = SupervisorJob()
 
     override val coroutineContext: CoroutineContext
         get() = baseDispatcher.ui() + supervisorJob

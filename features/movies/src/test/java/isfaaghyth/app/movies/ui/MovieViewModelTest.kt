@@ -6,26 +6,32 @@ import isfaaghyth.app.abstraction.util.thread.TestSchedulerProvider
 import isfaaghyth.app.data.Movie
 import isfaaghyth.app.data.Movies
 import isfaaghyth.app.movies.domain.MovieUseCase
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.*
 import org.mockito.ArgumentCaptor
-import org.mockito.BDDMockito.given
 import org.mockito.Captor
 import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
+import java.io.IOException
 
 @ExperimentalCoroutinesApi
 class MovieViewModelTest {
 
     @get:Rule val instantExecutorRule = InstantTaskExecutorRule()
 
-    @Mock lateinit var results: Observer<List<Movie>>
-    @Mock lateinit var useCase: MovieUseCase
+    @Mock lateinit var result: Observer<List<Movie>>
+    @Mock lateinit var state: Observer<MovieState>
+    @Mock lateinit var error: Observer<String>
 
-    @Captor lateinit var argCaptor: ArgumentCaptor<List<Movie>>
+    @Captor lateinit var argResultCaptor: ArgumentCaptor<List<Movie>>
+    @Captor lateinit var argStateCaptor: ArgumentCaptor<MovieState>
+
+    @Mock lateinit var useCase: MovieUseCase
 
     private lateinit var viewModel: MovieViewModel
 
@@ -51,23 +57,44 @@ class MovieViewModelTest {
         Dispatchers.setMain(schedulerProvider.ui())
 
         viewModel = MovieViewModel(useCase, schedulerProvider)
-        viewModel.result.observeForever(results)
+        viewModel.result.observeForever(result)
+        viewModel.state.observeForever(state)
+        viewModel.error.observeForever(error)
     }
 
-    @Test fun test() {
-        runBlocking {
-            `when`(useCase.getPopularMovie()).thenReturn(async { MovieState.LoadSuccess(moviesData) }.await())
+    @Test fun `should return a response of movies data`() = runBlocking {
+        /* given */
+        val returnValue = MovieState.LoadSuccess(moviesData)
+        `when`(useCase.getPopularMovie()).thenReturn(returnValue)
 
-            viewModel.getPopularMovie()
+        /* do */
+        viewModel.getPopularMovie()
 
-            verify(results, atLeastOnce()).onChanged(argCaptor.capture())
+        /* verify */
+        verify(result, atLeastOnce()).onChanged(argResultCaptor.capture())
+        verify(state, atLeastOnce()).onChanged(argStateCaptor.capture())
 
-            val values = argCaptor.allValues
+        /* then */
+        Assert.assertEquals(MovieState.HideLoading, argStateCaptor.allValues.first())
+        Assert.assertEquals(returnValue.data.resultsIntent, argResultCaptor.allValues.first())
 
-            // Test obtained values in order
-            Assert.assertEquals(1, values.size)
-            Assert.assertEquals(MovieState.LoadSuccess(moviesData), values[0])
-        }
+        /* clear */
+        clearInvocations(useCase, result, state)
+    }
+
+    @Test fun `should return an error without api key`() = runBlocking {
+        /* given */
+        val returnValue = MovieState.MovieError(IOException("API Key Not Found"))
+        `when`(useCase.getPopularMovie("")).thenReturn(returnValue)
+
+        /* do */
+        viewModel.getPopularMovie()
+
+        /* verify and then */
+        verifyNoMoreInteractions(error)
+
+        /* clear */
+        clearInvocations(useCase, error)
     }
 
     @After fun tearDown() {
