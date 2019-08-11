@@ -50,6 +50,12 @@ dependencies {
     testImplementation Testing.mockKtRunner
     androidTestImplementation Testing.testRunner
     androidTestImplementation Testing.espresso
+    androidTestImplementation Testing.espressoContrib
+    androidTestImplementation Testing.rules
+    androidTestImplementation Testing.core
+    androidTestImplementation Testing.espressoIdleResources
+
+    implementation Testing.espressoIdleResources
 
     /* Feature Module should add below */
     implementation project(Modules.movies)

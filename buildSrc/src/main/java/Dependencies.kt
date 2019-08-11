@@ -56,6 +56,7 @@ object Version {
     const val mockito = "2.8.47"
     const val mockKotlin = "2.1.0"
     const val mockTestRunner = "0.3.1"
+    const val rules = "1.1.0"
 }
 
 object Android {
@@ -110,7 +111,11 @@ object Testing {
     val jUnit = "junit:junit:${Version.jUnit}"
     val testRunner = "androidx.test:runner:${Version.testRunner}"
     val espresso = "androidx.test.espresso:espresso-core:${Version.espresso}"
+    val espressoContrib = "androidx.test.espresso:espresso-contrib:${Version.espresso}"
+    val espressoIdleResources = "androidx.test.espresso:espresso-idling-resource:${Version.espresso}"
     val mockito = "org.mockito:mockito-inline:${Version.mockito}"
     val mockKtRunner = "de.jodamob.kotlin:kotlin-runner-junit4:${Version.mockTestRunner}"
     val androidX = "androidx.arch.core:core-testing:${Version.archLifecycle}"
+    val rules = "androidx.test:rules:${Version.rules}"
+    val core = "androidx.test:core:${Version.rules}"
 }

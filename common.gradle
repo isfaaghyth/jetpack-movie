@@ -51,4 +51,8 @@ dependencies {
     testImplementation Coroutines.test
     androidTestImplementation Testing.testRunner
     androidTestImplementation Testing.espresso
+    androidTestImplementation Testing.espressoContrib
+    androidTestImplementation Testing.rules
+    androidTestImplementation Testing.core
+    androidTestImplementation Testing.espressoIdleResources
 }
