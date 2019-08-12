@@ -5,5 +5,5 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Response
 
 interface TVShowRepository {
-    fun getPopularTVShow(apiKey: String): Deferred<Response<TVShows>>
+    suspend fun getPopularTVShow(): Response<TVShows>
 }
