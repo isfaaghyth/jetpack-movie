@@ -24,6 +24,7 @@ object Network {
         return OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
             .addInterceptor(createLoggingInterceptor())
+            .addInterceptor(NetworkInterceptor())
             .pingInterval(30, TimeUnit.SECONDS)
             .readTimeout(1, TimeUnit.MINUTES)
             .connectTimeout(1, TimeUnit.MINUTES)
