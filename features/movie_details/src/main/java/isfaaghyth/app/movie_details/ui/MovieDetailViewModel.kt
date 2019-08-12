@@ -14,15 +14,15 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-interface MoviewDetailContract {
-    fun getMoviewDetail(movieId: String)
+interface MovieDetailContract {
+    fun getMovieDetail(movieId: String)
     fun getTVShowDetail(movieId: String)
 }
 
 class MovieDetailViewModel @Inject constructor(
     private val useCase: MovieDetailUseCase,
     dispatcher: SchedulerProvider
-): BaseViewModel(dispatcher), MoviewDetailContract {
+): BaseViewModel(dispatcher), MovieDetailContract {
 
     private val _movieDetail = MutableLiveData<Movie>()
     val movieDetail: LiveData<Movie>
@@ -41,11 +41,11 @@ class MovieDetailViewModel @Inject constructor(
         get() = _state
 
     init {
-        getMoviewDetail("123")
+        getMovieDetail("123")
         getTVShowDetail("123")
     }
 
-    override fun getMoviewDetail(movieId: String) {
+    override fun getMovieDetail(movieId: String) {
         _state.value = LoaderState.ShowLoading
         launch {
             val result = useCase.getMovieDetail(movieId)
