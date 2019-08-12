@@ -3,8 +3,8 @@ package isfaaghyth.app.movie_details
 import android.content.Context
 import android.content.Intent
 import isfaaghyth.app.abstraction.base.BaseActivity
-import isfaaghyth.app.abstraction.util.load
-import isfaaghyth.app.abstraction.util.toast
+import isfaaghyth.app.abstraction.util.ext.load
+import isfaaghyth.app.abstraction.util.ext.toast
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.data.entity.TVShow
 import kotlinx.android.synthetic.main.activity_movie_detail.*

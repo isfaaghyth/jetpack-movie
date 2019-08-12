@@ -2,8 +2,8 @@ package isfaaghyth.app.abstraction.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import isfaaghyth.app.abstraction.util.KeyboardUtils
-import isfaaghyth.app.abstraction.util.toast
+import isfaaghyth.app.abstraction.util.view.KeyboardUtils
+import isfaaghyth.app.abstraction.util.ext.toast
 
 abstract class BaseActivity: AppCompatActivity(), BaseView {
 

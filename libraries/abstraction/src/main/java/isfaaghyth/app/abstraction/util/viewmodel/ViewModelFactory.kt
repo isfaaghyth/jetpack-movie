@@ -1,4 +1,4 @@
-package isfaaghyth.app.abstraction.util
+package isfaaghyth.app.abstraction.util.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -1,10 +1,10 @@
 package isfaaghyth.app.movie_details.domain
 
-import isfaaghyth.app.abstraction.util.ResultState
-import isfaaghyth.app.abstraction.util.fetchState
+import isfaaghyth.app.abstraction.util.state.ResultState
+import isfaaghyth.app.abstraction.util.UNSUCCESSFUL_MESSAGE
+import isfaaghyth.app.abstraction.util.ext.fetchState
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.data.repository.movie_detail.MovieDetailRepository
-import java.io.IOException
 import javax.inject.Inject
 
 class MovieDetailUseCase @Inject constructor(val repository: MovieDetailRepository) {
@@ -15,7 +15,7 @@ class MovieDetailUseCase @Inject constructor(val repository: MovieDetailReposito
             if (response.isSuccessful) {
                 ResultState.Success(response.body()!!)
             } else {
-                ResultState.Error("Something problem")
+                ResultState.Error(UNSUCCESSFUL_MESSAGE)
             }
         }
     }

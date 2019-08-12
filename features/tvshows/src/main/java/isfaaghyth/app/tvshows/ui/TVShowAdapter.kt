@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import isfaaghyth.app.abstraction.util.load
+import isfaaghyth.app.abstraction.util.ext.load
 import isfaaghyth.app.data.entity.TVShow
 import isfaaghyth.app.movie_details.MovieDetailActivity
 import isfaaghyth.app.tvshows.R

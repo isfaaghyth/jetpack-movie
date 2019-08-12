@@ -1,5 +1,6 @@
-package isfaaghyth.app.abstraction.util
+package isfaaghyth.app.abstraction.util.ext
 
+import isfaaghyth.app.abstraction.util.state.ResultState
 import java.net.ConnectException
 
 suspend fun <T: Any> fetchState(call: suspend () -> ResultState<T>): ResultState<T> {

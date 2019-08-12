@@ -1,4 +1,4 @@
-package isfaaghyth.app.abstraction.util
+package isfaaghyth.app.abstraction.util.ext
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

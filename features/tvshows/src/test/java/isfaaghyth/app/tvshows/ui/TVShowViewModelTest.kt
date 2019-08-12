@@ -2,7 +2,8 @@ package isfaaghyth.app.tvshows.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import isfaaghyth.app.abstraction.util.ResultState
+import isfaaghyth.app.abstraction.util.state.LoaderState
+import isfaaghyth.app.abstraction.util.state.ResultState
 import isfaaghyth.app.abstraction.util.thread.TestSchedulerProvider
 import isfaaghyth.app.data.entity.TVShow
 import isfaaghyth.app.data.entity.TVShows
@@ -13,13 +14,13 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Before
-
-import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.*
-import java.io.IOException
+import org.mockito.Mockito.atLeastOnce
+import org.mockito.Mockito.verify
 
 @ExperimentalCoroutinesApi
 class TVShowViewModelTest {
@@ -28,11 +29,12 @@ class TVShowViewModelTest {
     val instantExecutorRule = InstantTaskExecutorRule()
 
     @Mock lateinit var result: Observer<List<TVShow>>
-    @Mock lateinit var state: Observer<TVShowState>
+    @Mock lateinit var state: Observer<LoaderState>
     @Mock lateinit var error: Observer<String>
 
     @Captor lateinit var argResultCaptor: ArgumentCaptor<List<TVShow>>
-    @Captor lateinit var argStateCaptor: ArgumentCaptor<TVShowState>
+    @Captor lateinit var argStateCaptor: ArgumentCaptor<LoaderState>
+    @Captor lateinit var argErrorCaptor: ArgumentCaptor<String>
 
     @Mock lateinit var useCase: TVShowUseCase
 
@@ -74,11 +76,10 @@ class TVShowViewModelTest {
         viewModel.getPopularTvShow()
 
         /* verify */
-        Mockito.verify(result, Mockito.atLeastOnce()).onChanged(argResultCaptor.capture())
-        Mockito.verify(state, Mockito.atLeastOnce()).onChanged(argStateCaptor.capture())
+        verify(result, atLeastOnce()).onChanged(argResultCaptor.capture())
+        verify(state, atLeastOnce()).onChanged(argStateCaptor.capture())
 
         /* then */
-        assertEquals(TVShowState.HideLoading, argStateCaptor.allValues.first())
         assertEquals(returnValue.data.resultsIntent, argResultCaptor.allValues.first())
 
         /* clear */
@@ -93,8 +94,11 @@ class TVShowViewModelTest {
         /* do */
         viewModel.getPopularTvShow()
 
-        /* verify and then */
-        Mockito.verifyNoMoreInteractions(error)
+        /* verify */
+        verify(error, atLeastOnce()).onChanged(argErrorCaptor.capture())
+
+        /* then */
+        assertEquals(returnValue.error, argErrorCaptor.allValues.first())
 
         /* clear */
         Mockito.clearInvocations(useCase, error)

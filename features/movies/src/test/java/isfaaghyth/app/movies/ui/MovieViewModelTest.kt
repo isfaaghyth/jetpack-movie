@@ -2,7 +2,7 @@ package isfaaghyth.app.movies.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import isfaaghyth.app.abstraction.util.ResultState
+import isfaaghyth.app.abstraction.util.state.ResultState
 import isfaaghyth.app.abstraction.util.thread.TestSchedulerProvider
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.data.entity.Movies

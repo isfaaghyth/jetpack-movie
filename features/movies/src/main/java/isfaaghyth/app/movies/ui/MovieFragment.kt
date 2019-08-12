@@ -8,9 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import isfaaghyth.app.abstraction.util.toast
-import isfaaghyth.app.movies.R
+import isfaaghyth.app.abstraction.util.ext.toast
+import isfaaghyth.app.abstraction.util.state.LoaderState
 import isfaaghyth.app.data.entity.Movie
+import isfaaghyth.app.movies.R
 import isfaaghyth.app.movies.di.DaggerMovieComponent
 import kotlinx.android.synthetic.main.fragment_movie.*
 import javax.inject.Inject
@@ -38,30 +39,30 @@ class MovieFragment: Fragment() {
     }
 
     private fun initView() {
-        //view model provider
         viewModel = ViewModelProviders
             .of(this, viewModelFactory)
             .get(MovieViewModel::class.java)
 
         lstMovies.adapter = adapter
 
-        //get movies
         initObserver()
     }
 
     private fun initObserver() {
         viewModel.state.observe(this, Observer { state ->
             when (state) {
-                is MovieState.ShowLoading -> toast("loading")
-                is MovieState.HideLoading -> toast("complete")
+                is LoaderState.ShowLoading -> toast("loading")
+                is LoaderState.HideLoading -> toast("complete")
             }
         })
-        viewModel.result.observe(this, Observer {
-            movieData.addAll(it)
+
+        viewModel.result.observe(this, Observer { movies ->
+            movieData.addAll(movies)
             adapter.notifyDataSetChanged()
         })
-        viewModel.error.observe(this, Observer {
-            error -> toast(error)
+
+        viewModel.error.observe(this, Observer { error ->
+            toast(error)
         })
     }
 

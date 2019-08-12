@@ -3,11 +3,14 @@ package isfaaghyth.app.tvshows.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import isfaaghyth.app.abstraction.base.BaseViewModel
-import isfaaghyth.app.abstraction.util.ResultState
+import isfaaghyth.app.abstraction.util.state.LoaderState
+import isfaaghyth.app.abstraction.util.state.ResultState
 import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
 import isfaaghyth.app.data.entity.TVShow
 import isfaaghyth.app.tvshows.domain.TVShowUseCase
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 interface TVShowContract {
@@ -19,8 +22,8 @@ class TVShowViewModel @Inject constructor(
     dispatcher: SchedulerProvider
 ): BaseViewModel(dispatcher), TVShowContract {
 
-    private val _state = MutableLiveData<TVShowState>()
-    val state: LiveData<TVShowState>
+    private val _state = MutableLiveData<LoaderState>()
+    val state: LiveData<LoaderState>
         get() = _state
 
     private val _result = MutableLiveData<List<TVShow>>()
@@ -36,11 +39,11 @@ class TVShowViewModel @Inject constructor(
     }
 
     override fun getPopularTvShow() {
-        _state.value = TVShowState.ShowLoading
+        _state.value = LoaderState.ShowLoading
         launch {
             val result = useCase.getPopularTvShow()
             withContext(Dispatchers.Main) {
-                _state.value = TVShowState.HideLoading
+                _state.value = LoaderState.HideLoading
                 when (result) {
                     is ResultState.Success -> _result.postValue(result.data.resultsIntent)
                     is ResultState.Error -> _error.postValue(result.error)

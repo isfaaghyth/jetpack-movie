@@ -3,11 +3,14 @@ package isfaaghyth.app.movies.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import isfaaghyth.app.abstraction.base.BaseViewModel
-import isfaaghyth.app.abstraction.util.ResultState
+import isfaaghyth.app.abstraction.util.state.LoaderState
+import isfaaghyth.app.abstraction.util.state.ResultState
 import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.movies.domain.MovieUseCase
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 interface MovieContract {
@@ -19,8 +22,8 @@ class MovieViewModel @Inject constructor(
     dispatcher: SchedulerProvider
 ): BaseViewModel(dispatcher), MovieContract {
 
-    private val _state = MutableLiveData<MovieState>()
-    val state: LiveData<MovieState>
+    private val _state = MutableLiveData<LoaderState>()
+    val state: LiveData<LoaderState>
         get() = _state
 
     private val _result = MutableLiveData<List<Movie>>()
@@ -36,11 +39,11 @@ class MovieViewModel @Inject constructor(
     }
 
     override fun getPopularMovie() {
-        _state.value = MovieState.ShowLoading
+        _state.value = LoaderState.ShowLoading
         launch(coroutineContext) {
             val result = useCase.getPopularMovie()
             withContext(Dispatchers.Main) {
-                _state.value = MovieState.HideLoading
+                _state.value = LoaderState.HideLoading
                 when (result) {
                     is ResultState.Success -> _result.postValue(result.data.resultsIntent)
                     is ResultState.Error -> _error.postValue(result.error)

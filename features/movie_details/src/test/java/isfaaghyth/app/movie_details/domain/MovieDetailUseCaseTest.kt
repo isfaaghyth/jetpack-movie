@@ -1,6 +1,6 @@
 package isfaaghyth.app.movie_details.domain
 
-import isfaaghyth.app.abstraction.util.ResultState
+import isfaaghyth.app.abstraction.util.state.ResultState
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.data.repository.movie_detail.MovieDetailRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi

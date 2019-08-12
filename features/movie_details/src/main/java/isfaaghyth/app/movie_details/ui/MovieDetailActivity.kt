@@ -4,7 +4,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import isfaaghyth.app.abstraction.base.BaseActivity
-import isfaaghyth.app.abstraction.util.toast
+import isfaaghyth.app.abstraction.util.ext.toast
 import isfaaghyth.app.movie_details.R
 import isfaaghyth.app.movie_details.di.DaggerMovieDetailComponent
 import javax.inject.Inject

@@ -1,12 +1,9 @@
 package isfaaghyth.app.movies.domain
 
-import isfaaghyth.app.abstraction.util.ResultState
+import isfaaghyth.app.abstraction.util.state.ResultState
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.data.entity.Movies
 import isfaaghyth.app.data.repository.movie.MovieRepository
-import isfaaghyth.app.movies.BuildConfig
-import isfaaghyth.app.movies.ui.MovieState
-import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType
@@ -16,7 +13,6 @@ import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import retrofit2.Response
-import java.io.IOException
 
 @ExperimentalCoroutinesApi
 class MovieUseCaseTest {

@@ -3,7 +3,7 @@ package isfaaghyth.app.movie_details.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import isfaaghyth.app.abstraction.base.BaseViewModel
-import isfaaghyth.app.abstraction.util.ResultState
+import isfaaghyth.app.abstraction.util.state.ResultState
 import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.movie_details.domain.MovieDetailUseCase

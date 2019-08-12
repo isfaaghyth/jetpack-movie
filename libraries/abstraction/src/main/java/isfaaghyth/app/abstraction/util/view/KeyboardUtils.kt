@@ -1,4 +1,4 @@
-package isfaaghyth.app.abstraction.util
+package isfaaghyth.app.abstraction.util.view
 
 import android.app.Activity
 import android.content.Context
