@@ -28,7 +28,7 @@ object Version {
     const val ktx = "1.0.1"
 
     //network
-    const val retrofit = "2.5.0"
+    const val retrofit = "2.6.0"
     const val rxretrofit = "2.4.0"
     const val okhttpLogging = "3.11.0"
 
@@ -53,7 +53,7 @@ object Version {
     const val jUnit = "4.12"
     const val testRunner = "1.1.0-alpha4"
     const val espresso = "3.1.0-alpha4"
-    const val mockito = "2.8.47"
+    const val mockito = "3.0.0"
     const val mockKotlin = "2.1.0"
     const val mockTestRunner = "0.3.1"
     const val rules = "1.1.0"
