@@ -7,6 +7,9 @@ dependencies {
     implementation Android.constraintLayout
     implementation Jetpack.recyclerView
 
+    //network
+    implementation Retrofit.retrofit
+
     //coroutines
     implementation Coroutines.core
 

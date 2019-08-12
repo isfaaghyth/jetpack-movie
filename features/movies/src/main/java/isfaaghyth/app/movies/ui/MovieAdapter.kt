@@ -1,5 +1,7 @@
 package isfaaghyth.app.movies.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,7 +47,7 @@ class MovieAdapter(private val movie: List<Movie>): RecyclerView.Adapter<MovieAd
             poster.load(movie.bannerUrl())
             cardItem.setOnClickListener {
                 val context = view.context
-                context.startActivity(MovieDetailActivity.movieIntent(context, movie))
+                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("jetmovie://movie/${movie.id}")))
             }
         }
     }

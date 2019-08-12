@@ -3,6 +3,7 @@ package isfaaghyth.app.tvshows.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import isfaaghyth.app.abstraction.base.BaseViewModel
+import isfaaghyth.app.abstraction.util.ResultState
 import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
 import isfaaghyth.app.data.entity.TVShow
 import isfaaghyth.app.tvshows.domain.TVShowUseCase
@@ -41,8 +42,8 @@ class TVShowViewModel @Inject constructor(
             withContext(Dispatchers.Main) {
                 _state.value = TVShowState.HideLoading
                 when (result) {
-                    is TVShowState.LoadSuccess -> _result.postValue(result.data.resultsIntent)
-                    is TVShowState.MovieError -> _error.postValue(result.error.message)
+                    is ResultState.Success -> _result.postValue(result.data.resultsIntent)
+                    is ResultState.Error -> _error.postValue(result.error)
                 }
             }
         }

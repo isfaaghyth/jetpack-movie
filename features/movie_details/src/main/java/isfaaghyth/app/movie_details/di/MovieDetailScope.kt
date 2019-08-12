@@ -1,4 +1,5 @@
 package isfaaghyth.app.movie_details.di
 
-interface MovieDetailScope {
-}
+import javax.inject.Scope
+
+@Scope annotation class MovieDetailScope
