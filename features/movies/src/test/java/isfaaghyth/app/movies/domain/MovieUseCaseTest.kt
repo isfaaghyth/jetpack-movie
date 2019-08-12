@@ -1,5 +1,6 @@
 package isfaaghyth.app.movies.domain
 
+import isfaaghyth.app.abstraction.util.ResultState
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.data.entity.Movies
 import isfaaghyth.app.data.repository.movie.MovieRepository
@@ -42,24 +43,23 @@ class MovieUseCaseTest {
     }
 
     @Test fun `should return success`() {
-        val apiKey = BuildConfig.API_KEY
-        val actual = MovieState.LoadSuccess(Movies(movies))
+        val actual = ResultState.Success(Movies(movies))
         val result = runBlocking {
-            `when`(repository.getPopularMovie(apiKey))
-                .thenReturn(CompletableDeferred(Response.success(Movies(movies))))
+            `when`(repository.getPopularMovie())
+                .thenReturn(Response.success(Movies(movies)))
             useCase.getPopularMovie()
         }
         assert(result == actual)
     }
 
     @Test fun `should return error`() {
-        val actual = MovieState.MovieError(IOException())
+        val actual = ResultState.Error("error")
         val result = runBlocking {
-            `when`(repository.getPopularMovie(""))
-                .thenReturn(CompletableDeferred(
+            `when`(repository.getPopularMovie())
+                .thenReturn(
                     Response.error(401, ResponseBody.create(MediaType.parse("application/json"), ""))
-                ))
-            useCase.getPopularMovie("")
+                )
+            useCase.getPopularMovie()
         }
 
         //probably has different error message, so you can check by type of java class

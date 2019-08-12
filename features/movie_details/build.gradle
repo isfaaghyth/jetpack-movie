@@ -7,6 +7,21 @@ dependencies {
     implementation Android.constraintLayout
     implementation Android.cardView
 
+    //network
+    implementation Retrofit.retrofit
+    implementation Retrofit.gsonConverter
+    implementation Retrofit.okHttpLogging
+    implementation Retrofit.coroutinesAdapter
+
+    //jetpack
+    implementation Jetpack.recyclerView
+    implementation Jetpack.lifecycle
+    kapt Jetpack.lifecycleCompiler
+
+    //coroutines
+    implementation Coroutines.core
+    implementation Coroutines.android
+
     //modules
     implementation project(Modules.abstraction)
     implementation project(Modules.data)

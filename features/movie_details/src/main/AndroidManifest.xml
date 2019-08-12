@@ -2,11 +2,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="isfaaghyth.app.movie_details">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application>
         <activity android:name=".MovieDetailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="jetmovie" />
+                <data android:host="movie" />
+                <data android:host="tvshow" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.MovieDetailActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <!-- jetmovie://movie -->
+                <!-- jetmovie://tvshow -->
                 <data android:scheme="jetmovie" />
                 <data android:host="movie" />
                 <data android:host="tvshow" />

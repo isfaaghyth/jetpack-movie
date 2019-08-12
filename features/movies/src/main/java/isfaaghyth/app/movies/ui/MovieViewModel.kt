@@ -3,6 +3,7 @@ package isfaaghyth.app.movies.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import isfaaghyth.app.abstraction.base.BaseViewModel
+import isfaaghyth.app.abstraction.util.ResultState
 import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.movies.domain.MovieUseCase
@@ -41,8 +42,8 @@ class MovieViewModel @Inject constructor(
             withContext(Dispatchers.Main) {
                 _state.value = MovieState.HideLoading
                 when (result) {
-                    is MovieState.LoadSuccess -> _result.postValue(result.data.resultsIntent)
-                    is MovieState.MovieError -> _error.postValue(result.error.message)
+                    is ResultState.Success -> _result.postValue(result.data.resultsIntent)
+                    is ResultState.Error -> _error.postValue(result.error)
                 }
             }
         }

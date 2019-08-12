@@ -2,6 +2,7 @@ package isfaaghyth.app.tvshows.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import isfaaghyth.app.abstraction.util.ResultState
 import isfaaghyth.app.abstraction.util.thread.TestSchedulerProvider
 import isfaaghyth.app.data.entity.TVShow
 import isfaaghyth.app.data.entity.TVShows
@@ -66,7 +67,7 @@ class TVShowViewModelTest {
 
     @Test fun `should return a response of movies data`() = runBlocking {
         /* given */
-        val returnValue = TVShowState.LoadSuccess(moviesData)
+        val returnValue = ResultState.Success(moviesData)
         Mockito.`when`(useCase.getPopularTvShow()).thenReturn(returnValue)
 
         /* do */
@@ -86,8 +87,8 @@ class TVShowViewModelTest {
 
     @Test fun `should return an error without api key`() = runBlocking {
         /* given */
-        val returnValue = TVShowState.MovieError(IOException("API Key Not Found"))
-        Mockito.`when`(useCase.getPopularTvShow("")).thenReturn(returnValue)
+        val returnValue = ResultState.Error("error")
+        Mockito.`when`(useCase.getPopularTvShow()).thenReturn(returnValue)
 
         /* do */
         viewModel.getPopularTvShow()
