@@ -2,6 +2,7 @@ package isfaaghyth.app.data.service
 
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.data.entity.Movies
+import isfaaghyth.app.data.entity.TVShow
 import isfaaghyth.app.data.entity.TVShows
 import retrofit2.Response
 import retrofit2.http.GET
@@ -21,10 +22,9 @@ interface NetworkServices {
         @Path("movie_id") movieId: String
     ): Response<Movie>
 
-    @GET("{type}/{movie_id}")
-    fun <T> getDetail(
-        @Path("type") type: String,
+    @GET("tv/{movie_id}")
+    suspend fun getTvDetail(
         @Path("movie_id") movieId: String
-    ): Response<T>
+    ): Response<TVShow>
 
 }

@@ -10,21 +10,12 @@ class MovieDetailRepositoryImpl @Inject constructor(
     private val service: NetworkServices
 ): MovieDetailRepository {
 
-    override suspend fun testGetMovieDetail(movieId: String): Response<Movie> {
+    override suspend fun getMovieDetail(movieId: String): Response<Movie> {
         return service.getMovieDetail(movieId)
     }
 
-    override fun getMovieDetail(movieId: String): Response<Movie> {
-        return service.getDetail(MOVIE_PATH, movieId)
-    }
-
-    override fun getTVShowDetail(movieId: String): Response<TVShow> {
-        return service.getDetail(TV_PATH, movieId)
-    }
-
-    companion object {
-        const val MOVIE_PATH = "movie"
-        const val TV_PATH = "tv"
+    override suspend fun getTVShowDetail(movieId: String): Response<TVShow> {
+        return service.getTvDetail(movieId)
     }
 
 }
