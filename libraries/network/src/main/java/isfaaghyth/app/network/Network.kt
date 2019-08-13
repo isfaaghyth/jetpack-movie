@@ -23,8 +23,8 @@ object Network {
     private fun okHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
-            .addInterceptor(createLoggingInterceptor())
             .addInterceptor(NetworkInterceptor())
+            .addInterceptor(createLoggingInterceptor())
             .pingInterval(30, TimeUnit.SECONDS)
             .readTimeout(1, TimeUnit.MINUTES)
             .connectTimeout(1, TimeUnit.MINUTES)

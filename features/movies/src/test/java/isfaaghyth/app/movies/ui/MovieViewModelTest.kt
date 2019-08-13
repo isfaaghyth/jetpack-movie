@@ -62,41 +62,20 @@ class MovieViewModelTest {
     }
 
     @Test fun `should return a response of movies data`() = runBlocking {
-        /* given */
         val returnValue = ResultState.Success(moviesData)
-
-        /* when */
         `when`(useCase.getPopularMovie()).thenReturn(returnValue)
-
-        /* do */
         viewModel.getPopularMovie()
-
-        /* verify */
         verify(result, atLeastOnce()).onChanged(argResultCaptor.capture())
-
-        /* then */
         Assert.assertEquals(returnValue.data.resultsIntent, argResultCaptor.allValues.first())
-
-        /* clear */
         clearInvocations(useCase, result)
     }
 
     @Test fun `should return an error without api key`() = runBlocking {
-        /* given */
         val returnValue = ResultState.Error("API Key Not Found")
-
-        /* when */
         `when`(useCase.getPopularMovie()).thenReturn(returnValue)
-
-        /* do */
         viewModel.getPopularMovie()
-
-        /* verify and then */
         verify(error, atLeastOnce()).onChanged(argErrorCaptor.capture())
-
         Assert.assertEquals(returnValue.error, argErrorCaptor.allValues.first())
-
-        /* clear */
         clearInvocations(useCase, error)
     }
 

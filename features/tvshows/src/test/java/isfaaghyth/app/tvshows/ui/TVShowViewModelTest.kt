@@ -19,14 +19,12 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.*
-import org.mockito.Mockito.atLeastOnce
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
 
 @ExperimentalCoroutinesApi
 class TVShowViewModelTest {
 
-    @get:Rule
-    val instantExecutorRule = InstantTaskExecutorRule()
+    @get:Rule val instantExecutorRule = InstantTaskExecutorRule()
 
     @Mock lateinit var result: Observer<List<TVShow>>
     @Mock lateinit var state: Observer<LoaderState>
@@ -68,40 +66,28 @@ class TVShowViewModelTest {
     }
 
     @Test fun `should return a response of movies data`() = runBlocking {
-        /* given */
         val returnValue = ResultState.Success(moviesData)
         Mockito.`when`(useCase.getPopularTvShow()).thenReturn(returnValue)
 
-        /* do */
         viewModel.getPopularTvShow()
 
-        /* verify */
         verify(result, atLeastOnce()).onChanged(argResultCaptor.capture())
         verify(state, atLeastOnce()).onChanged(argStateCaptor.capture())
 
-        /* then */
         assertEquals(returnValue.data.resultsIntent, argResultCaptor.allValues.first())
-
-        /* clear */
-        Mockito.clearInvocations(useCase, result, state)
+        clearInvocations(useCase, result, state)
     }
 
     @Test fun `should return an error without api key`() = runBlocking {
-        /* given */
         val returnValue = ResultState.Error("error")
         Mockito.`when`(useCase.getPopularTvShow()).thenReturn(returnValue)
 
-        /* do */
         viewModel.getPopularTvShow()
 
-        /* verify */
         verify(error, atLeastOnce()).onChanged(argErrorCaptor.capture())
 
-        /* then */
         assertEquals(returnValue.error, argErrorCaptor.allValues.first())
-
-        /* clear */
-        Mockito.clearInvocations(useCase, error)
+        clearInvocations(useCase, error)
     }
 
     @After fun tearDown() {
