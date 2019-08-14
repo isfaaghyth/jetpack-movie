@@ -5,17 +5,21 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.airbnb.deeplinkdispatch.DeepLink
 import isfaaghyth.app.abstraction.base.BaseActivity
+import isfaaghyth.app.abstraction.util.AppLink
 import isfaaghyth.app.abstraction.util.ext.hide
 import isfaaghyth.app.abstraction.util.ext.load
 import isfaaghyth.app.abstraction.util.ext.show
 import isfaaghyth.app.abstraction.util.ext.toast
 import isfaaghyth.app.abstraction.util.state.LoaderState
+import isfaaghyth.app.data.entity.Movie
+import isfaaghyth.app.data.entity.TVShow
 import isfaaghyth.app.movie_details.R
 import isfaaghyth.app.movie_details.di.DaggerMovieDetailComponent
 import kotlinx.android.synthetic.main.activity_movie_detail.*
+import java.util.*
 import javax.inject.Inject
 
-@DeepLink("jetmovie://detail/{type}/{movie_id}")
+@DeepLink(AppLink.MOVIE_DETAIL)
 class MovieDetailActivity: BaseActivity() {
 
     override fun contentView(): Int = R.layout.activity_movie_detail
@@ -34,8 +38,9 @@ class MovieDetailActivity: BaseActivity() {
     private fun initObserver() {
         if (intent.getBooleanExtra(DeepLink.IS_DEEP_LINK, false)) {
             val parameters = intent.extras!!
-            val movieId = parameters.getString("movie_id")!!
-            when(parameters.getString("type")) {
+            val movieId = parameters.getString(PARAM_MOVIE_ID)?: ""
+
+            when(parameters.getString(PARAM_TYPE)) {
                 TYPE_MOVIE -> viewModel.getMovieDetail(movieId)
                 TYPE_TV -> viewModel.getTVShowDetail(movieId)
                 else -> finish()
@@ -44,20 +49,12 @@ class MovieDetailActivity: BaseActivity() {
             viewModel.state.observe(this, Observer {
                 when (it) {
                     is LoaderState.ShowLoading -> {
-                        imgBanner.hide()
-                        imgPoster.hide()
-                        txtMovieName.hide()
-                        txtContent.hide()
-                        txtRating.hide()
-                        txtVote.hide()
+                        rootView.hide()
+                        progressBar.show()
                     }
                     is LoaderState.HideLoading -> {
-                        imgBanner.show()
-                        imgPoster.show()
-                        txtMovieName.show()
-                        txtContent.show()
-                        txtRating.show()
-                        txtVote.show()
+                        rootView.show()
+                        progressBar.hide()
                     }
                 }
             })
@@ -96,6 +93,9 @@ class MovieDetailActivity: BaseActivity() {
     companion object {
         const val TYPE_MOVIE = "movie"
         const val TYPE_TV = "tv"
+
+        const val PARAM_MOVIE_ID = "movie_id"
+        const val PARAM_TYPE = "type"
     }
 
 }
