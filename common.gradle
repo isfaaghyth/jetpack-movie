@@ -41,6 +41,10 @@ dependencies {
     kapt Dagger.compiler
     kapt Dagger.processor
 
+    //deeplink
+    implementation Misc.deeplink
+    kapt Misc.deeplinkProcessor
+
     //testing
     testImplementation Testing.jUnit
     testImplementation Testing.mockito

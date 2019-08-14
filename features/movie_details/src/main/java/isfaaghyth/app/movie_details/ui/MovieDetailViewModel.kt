@@ -40,11 +40,6 @@ class MovieDetailViewModel @Inject constructor(
     val state: LiveData<LoaderState>
         get() = _state
 
-    init {
-        getMovieDetail("123")
-        getTVShowDetail("123")
-    }
-
     override fun getMovieDetail(movieId: String) {
         _state.value = LoaderState.ShowLoading
         launch {

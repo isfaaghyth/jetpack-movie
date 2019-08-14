@@ -1,2 +1,3 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="isfaaghyth.app.abstraction"/>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="isfaaghyth.app.abstraction"/>

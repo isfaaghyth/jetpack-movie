@@ -49,6 +49,9 @@ object Version {
     //di
     const val dagger = "2.21"
 
+    //misc
+    const val deeplink = "4.1.0"
+
     //testing
     const val jUnit = "4.12"
     const val testRunner = "1.1.0-alpha4"
@@ -118,4 +121,9 @@ object Testing {
     val androidX = "androidx.arch.core:core-testing:${Version.archLifecycle}"
     val rules = "androidx.test:rules:${Version.rules}"
     val core = "androidx.test:core:${Version.rules}"
+}
+
+object Misc {
+    val deeplink = "com.airbnb:deeplinkdispatch:${Version.deeplink}"
+    val deeplinkProcessor = "com.airbnb:deeplinkdispatch-processor:${Version.deeplink}"
 }

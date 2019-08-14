@@ -38,6 +38,10 @@ dependencies {
     implementation Android.ktx
     implementation Android.constraintLayout
 
+    //deeplink
+    implementation Misc.deeplink
+    kapt Misc.deeplinkProcessor
+
     //dependency injection
     implementation Dagger.dagger
     implementation Dagger.android
@@ -58,8 +62,10 @@ dependencies {
     implementation Testing.espressoIdleResources
 
     /* Feature Module should add below */
-    implementation project(Modules.movies)
+    implementation project(Modules.abstraction)
+    implementation project(Modules.movieDetail)
     implementation project(Modules.tvshows)
+    implementation project(Modules.movies)
 }
 
 repositories {
