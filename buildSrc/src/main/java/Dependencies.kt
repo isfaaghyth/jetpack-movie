@@ -31,6 +31,7 @@ object Version {
     const val retrofit = "2.6.0"
     const val rxretrofit = "2.4.0"
     const val okhttpLogging = "3.11.0"
+    const val mockWebServer = "3.11.0"
 
     //thread
     const val coroutines = "1.3.0-M2"
@@ -83,12 +84,14 @@ object Dependencies {
 }
 
 object Retrofit {
+    val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Version.mockWebServer}"
     val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
     val gsonConverter = "com.squareup.retrofit2:converter-gson:${Version.retrofit}"
     val scalarConverter = "com.squareup.retrofit2:converter-scalars:${Version.retrofit}"
     val rxAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Version.rxretrofit}"
     val okHttpLogging = "com.squareup.okhttp3:logging-interceptor:${Version.okhttpLogging}"
     val coroutinesAdapter = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Version.coroutinesAdapter}"
+    val mock = "com.squareup.retrofit2:retrofit-mock:${Version.retrofit}"
 }
 
 object Coroutines {

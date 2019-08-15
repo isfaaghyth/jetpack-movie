@@ -1,18 +1,19 @@
 package isfaaghyth.app.jetmovie
 
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.IdlingResource
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.rule.ActivityTestRule
+import isfaaghyth.app.jetmovie.helper.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -20,14 +21,10 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4ClassRunner::class)
 class MainActivityTest {
 
-    private var mIdlingResource: IdlingResource? = null
+    @Rule @JvmField val rules = ActivityTestRule(MainActivity::class.java)
 
     @Before fun registerIdleResource() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-        activityScenario.onActivity { activity ->
-            mIdlingResource = activity.getIdlingResource()
-            IdlingRegistry.getInstance().register(mIdlingResource)
-        }
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.get())
     }
 
     @Test fun testMovieList() {
@@ -48,6 +45,8 @@ class MainActivityTest {
 
         //goto movieDetailActivity
         onView(withId(R.id.lstMovies)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(itemPosition, click()))
+
+        Thread.sleep(2000)
 
         //check visibility of image of banner
         onView(withId(R.id.imgBanner)).check(matches(isDisplayed()))
@@ -75,6 +74,8 @@ class MainActivityTest {
         //goto movieDetailActivity
         onView(withId(R.id.lstTvShows)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(itemPosition, click()))
 
+        Thread.sleep(2000)
+
         //check visibility of image of banner
         onView(withId(R.id.imgBanner)).check(matches(isDisplayed()))
 
@@ -83,9 +84,7 @@ class MainActivityTest {
     }
 
     @After fun unregisterIdlingResource() {
-        if (mIdlingResource != null) {
-            IdlingRegistry.getInstance().unregister(mIdlingResource)
-        }
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.get())
     }
 
 }

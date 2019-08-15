@@ -1,9 +1,9 @@
-package isfaaghyth.app.movies.domain
+package isfaaghyth.app.tvshows.domain
 
 import isfaaghyth.app.abstraction.util.state.ResultState
-import isfaaghyth.app.data.entity.Movie
-import isfaaghyth.app.data.entity.Movies
-import isfaaghyth.app.data.repository.movie.MovieRepository
+import isfaaghyth.app.data.entity.TVShow
+import isfaaghyth.app.data.entity.TVShows
+import isfaaghyth.app.data.repository.tvshow.TVShowRepository
 import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType
 import okhttp3.ResponseBody
@@ -13,13 +13,13 @@ import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import retrofit2.Response
 
-class MovieUseCaseTest {
+class TVShowUseCaseTest {
 
-    private var repository = mock(MovieRepository::class.java)
-    private lateinit var useCase: MovieUseCase
+    private var repository = mock(TVShowRepository::class.java)
+    private lateinit var usecase: TVShowUseCase
 
-    private val movies = listOf(
-        Movie(
+    private val tvshows = listOf(
+        TVShow(
             "id",
             "movieId",
             "title",
@@ -33,31 +33,31 @@ class MovieUseCaseTest {
     )
 
     @Before fun setUp() {
-        useCase = MovieUseCase(repository)
+        usecase = TVShowUseCase(repository)
     }
 
     @Test fun `should return success`() {
-        val actual = ResultState.Success(Movies(movies))
+        val actual = ResultState.Success(TVShows(tvshows))
         val result = runBlocking {
-            `when`(repository.getPopularMovie())
-                .thenReturn(Response.success(Movies(movies)))
-            useCase.getPopularMovie()
+            `when`(repository.getPopularTVShow())
+                .thenReturn(
+                    Response.success(TVShows(tvshows))
+                )
+            usecase.getPopularTvShow()
         }
-        assert(result == actual)
+        assert(actual.javaClass === result.javaClass)
     }
 
     @Test fun `should return error`() {
         val actual = ResultState.Error("")
         val result = runBlocking {
-            `when`(repository.getPopularMovie())
+            `when`(repository.getPopularTVShow())
                 .thenReturn(
                     Response.error(401, ResponseBody.create(MediaType.parse("application/json"), ""))
                 )
-            useCase.getPopularMovie()
+            usecase.getPopularTvShow()
         }
-
-        //probably has different error message, so you can check by type of java class
-        assert(result.javaClass === actual.javaClass)
+        assert(actual.javaClass === result.javaClass)
     }
 
 }

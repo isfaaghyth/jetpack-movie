@@ -2,7 +2,6 @@ package isfaaghyth.app.tvshows.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import isfaaghyth.app.abstraction.util.state.LoaderState
 import isfaaghyth.app.abstraction.util.state.ResultState
 import isfaaghyth.app.abstraction.util.thread.TestSchedulerProvider
 import isfaaghyth.app.data.entity.TVShow
@@ -27,11 +26,9 @@ class TVShowViewModelTest {
     @get:Rule val instantExecutorRule = InstantTaskExecutorRule()
 
     @Mock lateinit var result: Observer<List<TVShow>>
-    @Mock lateinit var state: Observer<LoaderState>
     @Mock lateinit var error: Observer<String>
 
     @Captor lateinit var argResultCaptor: ArgumentCaptor<List<TVShow>>
-    @Captor lateinit var argStateCaptor: ArgumentCaptor<LoaderState>
     @Captor lateinit var argErrorCaptor: ArgumentCaptor<String>
 
     @Mock lateinit var useCase: TVShowUseCase
@@ -61,31 +58,23 @@ class TVShowViewModelTest {
 
         viewModel = TVShowViewModel(useCase, schedulerProvider)
         viewModel.result.observeForever(result)
-        viewModel.state.observeForever(state)
         viewModel.error.observeForever(error)
     }
 
-    @Test fun `should return a response of movies data`() = runBlocking {
+    @Test fun `should return a response of tvShows data`() = runBlocking {
         val returnValue = ResultState.Success(moviesData)
         Mockito.`when`(useCase.getPopularTvShow()).thenReturn(returnValue)
-
         viewModel.getPopularTvShow()
-
         verify(result, atLeastOnce()).onChanged(argResultCaptor.capture())
-        verify(state, atLeastOnce()).onChanged(argStateCaptor.capture())
-
         assertEquals(returnValue.data.resultsIntent, argResultCaptor.allValues.first())
-        clearInvocations(useCase, result, state)
+        clearInvocations(useCase, result)
     }
 
     @Test fun `should return an error without api key`() = runBlocking {
         val returnValue = ResultState.Error("error")
         Mockito.`when`(useCase.getPopularTvShow()).thenReturn(returnValue)
-
         viewModel.getPopularTvShow()
-
         verify(error, atLeastOnce()).onChanged(argErrorCaptor.capture())
-
         assertEquals(returnValue.error, argErrorCaptor.allValues.first())
         clearInvocations(useCase, error)
     }

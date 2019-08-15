@@ -57,7 +57,6 @@ class MovieViewModelTest {
         Dispatchers.setMain(schedulerProvider.ui())
 
         viewModel = MovieViewModel(useCase, schedulerProvider)
-
         viewModel.result.observeForever(result)
         viewModel.error.observeForever(error)
     }

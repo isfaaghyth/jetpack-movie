@@ -1,19 +1,17 @@
 package isfaaghyth.app.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 object Network {
 
-    fun retrofitClient(): Retrofit {
+    fun retrofitClient(url: String = BuildConfig.MOVIE_URL): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.MOVIE_URL)
+            .baseUrl(url)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient())

@@ -53,6 +53,7 @@ dependencies {
     testImplementation Coroutines.core
     testImplementation Coroutines.android
     testImplementation Coroutines.test
+    testImplementation Retrofit.mockWebServer
     androidTestImplementation Testing.testRunner
     androidTestImplementation Testing.espresso
     androidTestImplementation Testing.espressoContrib
