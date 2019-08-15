@@ -59,28 +59,41 @@ class MovieDetailActivity: BaseActivity() {
                 }
             })
 
-            viewModel.movieDetail.observe(this, Observer {
-                imgBanner.load(it.bannerUrl())
-                imgPoster.load(it.posterUrl())
-                txtMovieName.text = it.title
-                txtContent.text = it.overview
-                txtRating.text = "${it.voteCount}"
-                txtVote.text = "${it.voteAverage}"
+            viewModel.movieDetail.observe(this, Observer { movie ->
+                showDetail(
+                    movie.bannerUrl(),
+                    movie.posterUrl(),
+                    movie.title,
+                    movie.overview,
+                    movie.voteCount.toString(),
+                    movie.voteAverage.toString()
+                )
             })
 
-            viewModel.tvDetail.observe(this, Observer {
-                imgBanner.load(it.bannerUrl())
-                imgPoster.load(it.posterUrl())
-                txtMovieName.text = it.title
-                txtContent.text = it.overview
-                txtRating.text = "${it.voteCount}"
-                txtVote.text = "${it.voteAverage}"
+            viewModel.tvDetail.observe(this, Observer { tv ->
+                showDetail(
+                    tv.bannerUrl(),
+                    tv.posterUrl(),
+                    tv.title,
+                    tv.overview,
+                    tv.voteCount.toString(),
+                    tv.voteAverage.toString()
+                )
             })
 
-            viewModel.error.observe(this, Observer {
-                toast(it)
-            })
+            viewModel.error.observe(this, Observer { toast(it) })
         }
+    }
+
+    private fun showDetail(banner: String, poster: String,
+                           title: String, overview: String,
+                           voteCount: String, voteAverage: String) {
+        imgBanner.load(banner)
+        imgPoster.load(poster)
+        txtMovieName.text = title
+        txtContent.text = overview
+        txtRating.text = voteCount
+        txtVote.text = voteAverage
     }
 
     override fun initInjector() {

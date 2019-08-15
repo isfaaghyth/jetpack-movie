@@ -7,6 +7,7 @@ import isfaaghyth.app.abstraction.util.thread.TestSchedulerProvider
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.data.entity.Movies
 import isfaaghyth.app.movies.domain.MovieUseCase
+import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -66,7 +67,7 @@ class MovieViewModelTest {
         `when`(useCase.getPopularMovie()).thenReturn(returnValue)
         viewModel.getPopularMovie()
         verify(result, atLeastOnce()).onChanged(argResultCaptor.capture())
-        Assert.assertEquals(returnValue.data.resultsIntent, argResultCaptor.allValues.first())
+        assertEquals(returnValue.data.resultsIntent, argResultCaptor.allValues.first())
         clearInvocations(useCase, result)
     }
 
@@ -75,7 +76,7 @@ class MovieViewModelTest {
         `when`(useCase.getPopularMovie()).thenReturn(returnValue)
         viewModel.getPopularMovie()
         verify(error, atLeastOnce()).onChanged(argErrorCaptor.capture())
-        Assert.assertEquals(returnValue.error, argErrorCaptor.allValues.first())
+        assertEquals(returnValue.error, argErrorCaptor.allValues.first())
         clearInvocations(useCase, error)
     }
 
