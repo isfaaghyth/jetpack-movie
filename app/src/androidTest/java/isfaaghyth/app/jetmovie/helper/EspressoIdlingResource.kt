@@ -7,7 +7,11 @@ class EspressoIdlingResource {
         private const val RESOURCE = "GLOBAL"
         private val espressoTestIdlingResource = CountingIdlingResource(RESOURCE)
         fun increment() = espressoTestIdlingResource.increment()
-        fun decrement() = espressoTestIdlingResource.decrement()
+        fun decrement() {
+            if (espressoTestIdlingResource.isIdleNow) {
+                espressoTestIdlingResource.decrement()
+            }
+        }
         fun get() = espressoTestIdlingResource
     }
 }

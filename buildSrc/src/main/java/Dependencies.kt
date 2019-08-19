@@ -56,11 +56,12 @@ object Version {
     //testing
     const val jUnit = "4.12"
     const val testRunner = "1.1.0-alpha4"
-    const val espresso = "3.1.0-alpha4"
+    const val espresso = "3.1.1"
     const val mockito = "3.0.0"
     const val mockKotlin = "2.1.0"
     const val mockTestRunner = "0.3.1"
     const val rules = "1.1.0"
+    const val ext = "1.0.0"
 }
 
 object Android {
@@ -122,8 +123,12 @@ object Testing {
     val mockito = "org.mockito:mockito-inline:${Version.mockito}"
     val mockKtRunner = "de.jodamob.kotlin:kotlin-runner-junit4:${Version.mockTestRunner}"
     val androidX = "androidx.arch.core:core-testing:${Version.archLifecycle}"
+    val runner = "androidx.test:runner:${Version.rules}"
     val rules = "androidx.test:rules:${Version.rules}"
     val core = "androidx.test:core:${Version.rules}"
+
+    val extJunit = "androidx.test.ext:junit:${Version.ext}"
+    val extTruth = "androidx.test.ext:truth:${Version.ext}"
 }
 
 object Misc {

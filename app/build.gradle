@@ -55,11 +55,12 @@ dependencies {
     androidTestImplementation Testing.testRunner
     androidTestImplementation Testing.espresso
     androidTestImplementation Testing.espressoContrib
+    androidTestImplementation Testing.runner
     androidTestImplementation Testing.rules
     androidTestImplementation Testing.core
     androidTestImplementation Testing.espressoIdleResources
-
-    implementation Testing.espressoIdleResources
+    androidTestImplementation Testing.extJunit
+    androidTestImplementation Testing.extTruth
 
     /* Feature Module should add below */
     implementation project(Modules.abstraction)
