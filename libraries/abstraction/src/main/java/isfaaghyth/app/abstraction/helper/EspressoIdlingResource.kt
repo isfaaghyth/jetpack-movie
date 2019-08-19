@@ -1,4 +1,4 @@
-package isfaaghyth.app.jetmovie.helper
+package isfaaghyth.app.abstraction.helper
 
 import androidx.test.espresso.idling.CountingIdlingResource
 

@@ -12,7 +12,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
-import isfaaghyth.app.jetmovie.helper.EspressoIdlingResource
+import isfaaghyth.app.abstraction.helper.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -26,8 +26,10 @@ class MainActivityTest {
     @get:Rule val activityRule = ActivityTestRule(MainActivity::class.java)
     private val itemPosition = 5
 
-    @Before fun registerIdleResource() {
-        IdlingRegistry.getInstance().register(EspressoIdlingResource.get())
+    @Before fun setUp() {
+        IdlingRegistry
+            .getInstance()
+            .register(EspressoIdlingResource.get())
     }
 
     @Test fun testMovieList() {
@@ -74,8 +76,10 @@ class MainActivityTest {
         pressBack()
     }
 
-    @After fun unregisterIdlingResource() {
-        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.get())
+    @After fun tearDown() {
+        IdlingRegistry
+            .getInstance()
+            .unregister(EspressoIdlingResource.get())
     }
 
 }

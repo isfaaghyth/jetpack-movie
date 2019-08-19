@@ -46,6 +46,8 @@ dependencies {
     kapt Misc.deeplinkProcessor
 
     //testing
+    implementation Testing.espressoIdleResources
+
     testImplementation Testing.jUnit
     testImplementation Testing.mockito
     testImplementation Testing.mockKtRunner

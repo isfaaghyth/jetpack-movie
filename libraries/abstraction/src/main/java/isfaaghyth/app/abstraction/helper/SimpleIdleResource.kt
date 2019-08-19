@@ -1,4 +1,4 @@
-package isfaaghyth.app.jetmovie.helper
+package isfaaghyth.app.abstraction.helper
 
 import androidx.annotation.Nullable
 import androidx.test.espresso.IdlingResource
