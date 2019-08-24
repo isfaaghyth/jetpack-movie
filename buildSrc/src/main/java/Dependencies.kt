@@ -4,17 +4,18 @@
  */
 
 object ApplicationId {
-    val id = "isfaaghyth.app.jetmovie"
+    const val abstraction = "isfaaghyth.app.abstraction"
+    const val id = "isfaaghyth.app.jetmovie"
 }
 
 object Releases {
-    val versionCode = 1
-    val versionName = "1.0"
+    const val versionCode = 1
+    const val versionName = "1.0"
 
-    val buildToolsVersion = "29.0.0"
-    val compileSdkVersion = 28
-    val targetSdkVersion = 28
-    val minSdkVersion = 17
+    const val buildToolsVersion = "29.0.0"
+    const val compileSdkVersion = 28
+    const val targetSdkVersion = 28
+    const val minSdkVersion = 17
 }
 
 object Version {
@@ -118,6 +119,7 @@ object Testing {
     val jUnit = "junit:junit:${Version.jUnit}"
     val testRunner = "androidx.test:runner:${Version.testRunner}"
     val espresso = "androidx.test.espresso:espresso-core:${Version.espresso}"
+    val coreTesting = "androidx.arch.core:core-testing:${Version.archLifecycle}"
     val espressoContrib = "androidx.test.espresso:espresso-contrib:${Version.espresso}"
     val espressoIdleResources = "androidx.test.espresso:espresso-idling-resource:${Version.espresso}"
     val mockito = "org.mockito:mockito-inline:${Version.mockito}"

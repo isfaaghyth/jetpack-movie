@@ -3,6 +3,7 @@ package isfaaghyth.app.movies.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import isfaaghyth.app.abstraction.base.BaseViewModel
+import isfaaghyth.app.abstraction.helper.FetchingIdlingResource
 import isfaaghyth.app.abstraction.util.state.LoaderState
 import isfaaghyth.app.abstraction.util.state.ResultState
 import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
@@ -39,10 +40,12 @@ class MovieViewModel @Inject constructor(
     }
 
     override fun getPopularMovie() {
+        FetchingIdlingResource.begin()
         _state.value = LoaderState.ShowLoading
         launch(coroutineContext) {
             val result = useCase.getPopularMovie()
             withContext(Dispatchers.Main) {
+                FetchingIdlingResource.complete()
                 _state.value = LoaderState.HideLoading
                 when (result) {
                     is ResultState.Success -> _result.postValue(result.data.resultsIntent)

@@ -3,6 +3,7 @@ package isfaaghyth.app.movie_details.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import isfaaghyth.app.abstraction.base.BaseViewModel
+import isfaaghyth.app.abstraction.helper.FetchingIdlingResource
 import isfaaghyth.app.abstraction.util.state.LoaderState
 import isfaaghyth.app.abstraction.util.state.ResultState
 import isfaaghyth.app.abstraction.util.thread.SchedulerProvider
@@ -41,10 +42,12 @@ class MovieDetailViewModel @Inject constructor(
         get() = _state
 
     override fun getMovieDetail(movieId: String) {
+        FetchingIdlingResource.begin()
         _state.value = LoaderState.ShowLoading
         launch {
             val result = useCase.getMovieDetail(movieId)
             withContext(Dispatchers.Main) {
+                FetchingIdlingResource.complete()
                 _state.value = LoaderState.HideLoading
                 when (result) {
                     is ResultState.Success -> _movieDetail.postValue(result.data)
@@ -55,10 +58,12 @@ class MovieDetailViewModel @Inject constructor(
     }
 
     override fun getTVShowDetail(movieId: String) {
+        FetchingIdlingResource.begin()
         _state.value = LoaderState.ShowLoading
         launch {
             val result = useCase.getTvDetail(movieId)
             withContext(Dispatchers.Main) {
+                FetchingIdlingResource.complete()
                 _state.value = LoaderState.HideLoading
                 when (result) {
                     is ResultState.Success -> _tvDetail.postValue(result.data)

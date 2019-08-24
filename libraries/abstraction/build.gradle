@@ -12,6 +12,7 @@ dependencies {
 
     //coroutines
     implementation Coroutines.core
+    implementation Jetpack.lifecycle
 
     //glide
     implementation Glide.glide

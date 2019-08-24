@@ -52,6 +52,7 @@ dependencies {
     testImplementation Testing.jUnit
     testImplementation Testing.mockito
     testImplementation Testing.mockKtRunner
+    androidTestImplementation Testing.coreTesting
     androidTestImplementation Testing.testRunner
     androidTestImplementation Testing.espresso
     androidTestImplementation Testing.espressoContrib

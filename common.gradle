@@ -2,6 +2,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-allopen'
+
+allOpen {
+    def openClass = ".annotation.OpenClass"
+    annotation ApplicationId.abstraction + openClass
+}
 
 android {
     compileSdkVersion Releases.compileSdkVersion
