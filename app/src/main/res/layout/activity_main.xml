@@ -2,42 +2,25 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        app:tabBackground="@color/colorPrimaryDark"
+        app:tabTextColor="@android:color/white"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="#ffffff"
+        app:tabIndicatorHeight="4dp"
+        app:tabMode="fixed"/>
 
-        <Button
-            android:id="@+id/btnMovie"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:background="#383838"
-            android:clickable="true"
-            android:focusable="true"
-            android:textColor="@android:color/white"
-            android:text="Movie"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/btnTvShow"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:background="#383838"
-            android:clickable="true"
-            android:focusable="true"
-            android:textColor="@android:color/white"
-            android:text="TV SHOW"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/test"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpagerMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

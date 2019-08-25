@@ -22,6 +22,7 @@ object Version {
     //common
     const val kotlin = "1.3.20"
     const val gradle = "3.3.1"
+    const val material = "1.1.0-alpha05"
 
     //androidx
     const val constraintLayout = "1.1.2"
@@ -59,7 +60,6 @@ object Version {
     const val testRunner = "1.1.0-alpha4"
     const val espresso = "3.1.1"
     const val mockito = "3.0.0"
-    const val mockKotlin = "2.1.0"
     const val mockTestRunner = "0.3.1"
     const val rules = "1.1.0"
     const val ext = "1.0.0"
@@ -71,6 +71,7 @@ object Android {
     val cardView = "androidx.cardview:cardview:${Version.appCompat}"
     val ktx = "androidx.core:core-ktx:${Version.ktx}"
     val gson = "com.google.code.gson:gson:${Version.gson}"
+    val design = "com.google.android.material:material:${Version.material}"
 }
 
 object Jetpack {

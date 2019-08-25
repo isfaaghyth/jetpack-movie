@@ -37,6 +37,7 @@ dependencies {
     implementation Android.appCompat
     implementation Android.ktx
     implementation Android.constraintLayout
+    implementation Android.design
 
     //deeplink
     implementation Misc.deeplink

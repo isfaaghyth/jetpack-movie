@@ -5,6 +5,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.swipeLeft
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
@@ -37,11 +38,6 @@ class MainActivityTest {
     }
 
     @Test fun testMovieList() {
-        //showing movies
-        onView(withId(R.id.btnMovie)).check(matches(isDisplayed()))
-
-        onView(withId(R.id.btnMovie)).perform(click())
-
         //check visibility of listMovies
         onView(withId(R.id.lstMovies)).check(matches(isDisplayed()))
 
@@ -53,16 +49,10 @@ class MainActivityTest {
 
         //check visibility of image of banner
         onView(withId(R.id.imgBanner)).check(matches(isDisplayed()))
-
-        //back to mainActivity
-        pressBack()
     }
 
     @Test fun testTvShowList() {
-        //showing movies
-        onView(withId(R.id.btnTvShow)).check(matches(isDisplayed()))
-
-        onView(withId(R.id.btnTvShow)).perform(click())
+        onView(withId(R.id.viewpagerMain)).perform(swipeLeft())
 
         //check visibility of listMovies
         onView(withId(R.id.lstTvShows)).check(matches(isDisplayed()))
@@ -75,9 +65,6 @@ class MainActivityTest {
 
         //check visibility of image of banner
         onView(withId(R.id.imgBanner)).check(matches(isDisplayed()))
-
-        //back to mainActivity
-        pressBack()
     }
 
     @After fun tearDown() {
