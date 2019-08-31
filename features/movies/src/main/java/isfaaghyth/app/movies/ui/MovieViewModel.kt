@@ -42,7 +42,7 @@ class MovieViewModel @Inject constructor(
     override fun getPopularMovie() {
         FetchingIdlingResource.begin()
         _state.value = LoaderState.ShowLoading
-        launch(coroutineContext) {
+        launch {
             val result = useCase.getPopularMovie()
             withContext(Dispatchers.Main) {
                 FetchingIdlingResource.complete()
