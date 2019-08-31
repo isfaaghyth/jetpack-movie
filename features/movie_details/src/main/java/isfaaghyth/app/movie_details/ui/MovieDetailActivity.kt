@@ -5,21 +5,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.airbnb.deeplinkdispatch.DeepLink
 import isfaaghyth.app.abstraction.base.BaseActivity
-import isfaaghyth.app.abstraction.util.AppLink
+import isfaaghyth.app.abstraction.util.AppLink.MovieDetail.MOVIE_DETAIL
+import isfaaghyth.app.abstraction.util.AppLink.MovieDetail.PARAM_MOVIE_ID
+import isfaaghyth.app.abstraction.util.AppLink.MovieDetail.PARAM_TYPE
 import isfaaghyth.app.abstraction.util.ext.hide
 import isfaaghyth.app.abstraction.util.ext.load
 import isfaaghyth.app.abstraction.util.ext.show
 import isfaaghyth.app.abstraction.util.ext.toast
 import isfaaghyth.app.abstraction.util.state.LoaderState
-import isfaaghyth.app.data.entity.Movie
-import isfaaghyth.app.data.entity.TVShow
 import isfaaghyth.app.movie_details.R
 import isfaaghyth.app.movie_details.di.DaggerMovieDetailComponent
 import kotlinx.android.synthetic.main.activity_movie_detail.*
-import java.util.*
 import javax.inject.Inject
 
-@DeepLink(AppLink.MOVIE_DETAIL)
+@DeepLink(MOVIE_DETAIL)
 class MovieDetailActivity: BaseActivity() {
 
     override fun contentView(): Int = R.layout.activity_movie_detail
@@ -106,9 +105,6 @@ class MovieDetailActivity: BaseActivity() {
     companion object {
         const val TYPE_MOVIE = "movie"
         const val TYPE_TV = "tv"
-
-        const val PARAM_MOVIE_ID = "movie_id"
-        const val PARAM_TYPE = "type"
     }
 
 }
