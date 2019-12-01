@@ -20,7 +20,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
 
-@ExperimentalCoroutinesApi
 class MovieViewModelTest {
 
     @get:Rule val instantExecutorRule = InstantTaskExecutorRule()
@@ -36,20 +35,21 @@ class MovieViewModelTest {
     private lateinit var viewModel: MovieViewModel
 
     private val movies = listOf(
-        Movie(
-            "id",
-            "movieId",
-            "title",
-            "posterPath",
-            "overview",
-            "backdrop",
-            0,
-            0f,
-            "relateDate"
+            Movie(
+                "id",
+                "movieId",
+                "title",
+                "posterPath",
+                "overview",
+                "backdrop",
+                0,
+                0f,
+                "relateDate"
+            )
         )
-    )
 
     private val moviesData = Movies(movies)
+
     private val schedulerProvider = TestSchedulerProvider()
 
     @Before fun setUp() {
