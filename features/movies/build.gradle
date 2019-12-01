@@ -13,6 +13,7 @@ dependencies {
     implementation Retrofit.coroutinesAdapter
 
     //coroutines
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha01"
     implementation Coroutines.core
     implementation Coroutines.android
 
@@ -28,4 +29,12 @@ dependencies {
 
     //movie_detail features (easily purpose, just pass it with parcelable)
     implementation project(Modules.movieDetail)
+
+    implementation 'org.spekframework.spek2:spek-dsl-jvm:2.0.6'
+
+    testImplementation 'org.junit.platform:junit-platform-runner:1.0.0'
+    testImplementation 'org.jetbrains.spek:spek-api:1.1.5'
+    testImplementation 'org.jetbrains.spek:spek-junit-platform-engine:1.1.5'
+    testImplementation 'org.spekframework.spek2:spek-dsl-jvm:2.0.6'
+    testImplementation "org.spekframework.spek2:spek-runner-junit5:2.0.6"
 }
