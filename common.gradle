@@ -36,6 +36,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    sourceSets.each {
+        it.java.srcDirs += "src/$it.name/kotlin"
+    }
+
+    testOptions {
+        unitTests.all {
+            testLogging.events = ["passed", "skipped", "failed"]
+        }
+    }
 }
 
 dependencies {
@@ -71,4 +81,6 @@ dependencies {
     androidTestImplementation Testing.espressoIdleResources
     androidTestImplementation Testing.extJunit
     androidTestImplementation Testing.extTruth
+
+    testImplementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }
