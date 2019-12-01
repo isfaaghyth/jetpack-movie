@@ -1,5 +1,6 @@
 package isfaaghyth.app.movie_details.ui
 
+import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -13,6 +14,8 @@ import isfaaghyth.app.abstraction.util.ext.load
 import isfaaghyth.app.abstraction.util.ext.show
 import isfaaghyth.app.abstraction.util.ext.toast
 import isfaaghyth.app.abstraction.util.state.LoaderState
+import isfaaghyth.app.data.entity.MovieDetail
+import isfaaghyth.app.data.mapper.MovieDetailMapper
 import isfaaghyth.app.movie_details.R
 import isfaaghyth.app.movie_details.di.DaggerMovieDetailComponent
 import kotlinx.android.synthetic.main.activity_movie_detail.*
@@ -31,12 +34,13 @@ class MovieDetailActivity: BaseActivity() {
             .of(this, viewModelFactory)
             .get(MovieDetailViewModel::class.java)
 
-        initObserver()
+        initParam()
+        initObservable()
     }
 
-    private fun initObserver() {
+    private fun initParam() {
         if (intent.getBooleanExtra(DeepLink.IS_DEEP_LINK, false)) {
-            val parameters = intent.extras!!
+            val parameters = intent.extras?: Bundle()
             val movieId = parameters.getString(PARAM_MOVIE_ID)?: ""
 
             when(parameters.getString(PARAM_TYPE)) {
@@ -44,55 +48,41 @@ class MovieDetailActivity: BaseActivity() {
                 TYPE_TV -> viewModel.getTVShowDetail(movieId)
                 else -> finish()
             }
-
-            viewModel.state.observe(this, Observer {
-                when (it) {
-                    is LoaderState.ShowLoading -> {
-                        rootView.hide()
-                        progressBar.show()
-                    }
-                    is LoaderState.HideLoading -> {
-                        rootView.show()
-                        progressBar.hide()
-                    }
-                }
-            })
-
-            viewModel.movieDetail.observe(this, Observer { movie ->
-                showDetail(
-                    movie.bannerUrl(),
-                    movie.posterUrl(),
-                    movie.title,
-                    movie.overview,
-                    movie.voteCount.toString(),
-                    movie.voteAverage.toString()
-                )
-            })
-
-            viewModel.tvDetail.observe(this, Observer { tv ->
-                showDetail(
-                    tv.bannerUrl(),
-                    tv.posterUrl(),
-                    tv.title,
-                    tv.overview,
-                    tv.voteCount.toString(),
-                    tv.voteAverage.toString()
-                )
-            })
-
-            viewModel.error.observe(this, Observer { toast(it) })
         }
     }
 
-    private fun showDetail(banner: String, poster: String,
-                           title: String, overview: String,
-                           voteCount: String, voteAverage: String) {
+    private fun initObservable() {
+        viewModel.state.observe(this, Observer {
+            when (it) {
+                is LoaderState.ShowLoading -> {
+                    rootView.hide()
+                    progressBar.show()
+                }
+                is LoaderState.HideLoading -> {
+                    rootView.show()
+                    progressBar.hide()
+                }
+            }
+        })
+
+        viewModel.movieDetail.observe(this, Observer { movie ->
+            showDetail(MovieDetailMapper.mapFromMovie(movie))
+        })
+
+        viewModel.tvDetail.observe(this, Observer { tv ->
+            showDetail(MovieDetailMapper.mapFromTVShow(tv))
+        })
+
+        viewModel.error.observe(this, Observer { toast(it) })
+    }
+
+    private fun showDetail(detail: MovieDetail) {
         imgBanner.load(banner)
-        imgPoster.load(poster)
+        imgPoster.load(detail.posterPath)
         txtMovieName.text = title
-        txtContent.text = overview
-        txtRating.text = voteCount
-        txtVote.text = voteAverage
+        txtContent.text = detail.overview
+        txtRating.text = detail.voteCount.toString()
+        txtVote.text = detail.voteAverage.toString()
     }
 
     override fun initInjector() {
