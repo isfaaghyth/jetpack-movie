@@ -79,7 +79,7 @@ class MovieDetailActivity: BaseActivity() {
     private fun showDetail(detail: MovieDetail) {
         imgBanner.load(detail.backdropPath)
         imgPoster.load(detail.posterPath)
-        txtMovieName.text = title
+        txtMovieName.text = detail.title
         txtContent.text = detail.overview
         txtRating.text = detail.voteCount.toString()
         txtVote.text = detail.voteAverage.toString()
