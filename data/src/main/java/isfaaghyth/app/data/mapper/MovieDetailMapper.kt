@@ -11,9 +11,9 @@ object MovieDetailMapper {
             movie.id,
             movie.movieId,
             movie.title,
-            movie.posterPath,
+            movie.posterUrl(),
             movie.overview,
-            movie.backdropPath,
+            movie.bannerUrl(),
             movie.voteCount,
             movie.voteAverage,
             movie.releaseDate
@@ -25,9 +25,9 @@ object MovieDetailMapper {
             tv.id,
             tv.movieId,
             tv.title,
-            tv.posterPath,
+            tv.posterUrl(),
             tv.overview,
-            tv.backdropPath,
+            tv.bannerUrl(),
             tv.voteCount,
             tv.voteAverage,
             tv.releaseDate

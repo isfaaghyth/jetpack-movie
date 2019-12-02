@@ -77,7 +77,7 @@ class MovieDetailActivity: BaseActivity() {
     }
 
     private fun showDetail(detail: MovieDetail) {
-        imgBanner.load(banner)
+        imgBanner.load(detail.backdropPath)
         imgPoster.load(detail.posterPath)
         txtMovieName.text = title
         txtContent.text = detail.overview
