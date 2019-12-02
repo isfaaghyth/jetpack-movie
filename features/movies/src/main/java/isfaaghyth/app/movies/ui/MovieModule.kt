@@ -8,7 +8,7 @@ import isfaaghyth.app.data.di.DataModule
 import isfaaghyth.app.data.di.DataScope
 import isfaaghyth.app.data.repository.movie.MovieRepository
 import isfaaghyth.app.data.repository.movie.MovieRepositoryImpl
-import isfaaghyth.app.data.service.NetworkServices
+import isfaaghyth.app.data.routes.NetworkServices
 import isfaaghyth.app.movies.di.MovieScope
 import isfaaghyth.app.movies.domain.MovieUseCase
 

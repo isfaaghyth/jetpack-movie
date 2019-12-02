@@ -1,4 +1,4 @@
-package isfaaghyth.app.data.service
+package isfaaghyth.app.data.routes
 
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.data.entity.Movies
@@ -7,7 +7,6 @@ import isfaaghyth.app.data.entity.TVShows
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface NetworkServices {
 

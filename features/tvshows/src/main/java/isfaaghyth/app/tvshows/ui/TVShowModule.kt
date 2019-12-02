@@ -8,7 +8,7 @@ import isfaaghyth.app.data.di.DataModule
 import isfaaghyth.app.data.di.DataScope
 import isfaaghyth.app.data.repository.tvshow.TVShowRepository
 import isfaaghyth.app.data.repository.tvshow.TVShowRepositoryImpl
-import isfaaghyth.app.data.service.NetworkServices
+import isfaaghyth.app.data.routes.NetworkServices
 import isfaaghyth.app.tvshows.di.TVShowScope
 import isfaaghyth.app.tvshows.domain.TVShowUseCase
 

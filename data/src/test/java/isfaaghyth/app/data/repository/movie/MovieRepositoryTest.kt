@@ -2,11 +2,10 @@ package isfaaghyth.app.data.repository.movie
 
 import isfaaghyth.app.data.entity.Movie
 import isfaaghyth.app.data.entity.Movies
-import isfaaghyth.app.data.service.NetworkServices
+import isfaaghyth.app.data.routes.NetworkServices
 import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType
 import okhttp3.ResponseBody
-import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test

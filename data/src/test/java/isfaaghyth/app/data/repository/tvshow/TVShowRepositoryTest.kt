@@ -2,11 +2,10 @@ package isfaaghyth.app.data.repository.tvshow
 
 import isfaaghyth.app.data.entity.TVShows
 import isfaaghyth.app.data.entity.TVShow
-import isfaaghyth.app.data.service.NetworkServices
+import isfaaghyth.app.data.routes.NetworkServices
 import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType
 import okhttp3.ResponseBody
-import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

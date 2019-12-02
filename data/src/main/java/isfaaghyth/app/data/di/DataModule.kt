@@ -2,7 +2,7 @@ package isfaaghyth.app.data.di
 
 import dagger.Module
 import dagger.Provides
-import isfaaghyth.app.data.service.NetworkServices
+import isfaaghyth.app.data.routes.NetworkServices
 import isfaaghyth.app.network.Network.retrofitClient
 
 @Module class DataModule {
