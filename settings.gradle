@@ -1,14 +1,14 @@
 //app
-include Modules.app
+include ":app"
 
 //features
-include Modules.movies
-include Modules.tvshows
-include Modules.movieDetail
+include ":features:movies"
+include ":features:tvshows"
+include ":features:movie_details"
 
 //libraries
-include Modules.network
-include Modules.abstraction
+include ":libraries:network"
+include ":libraries:abstraction"
 
 //data
-include Modules.data
+include ":data"

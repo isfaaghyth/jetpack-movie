@@ -1,5 +1,7 @@
 package isfaaghyth.app.tvshows.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +16,10 @@ import isfaaghyth.app.data.entity.TVShow
 import isfaaghyth.app.tvshows.R
 import isfaaghyth.app.tvshows.di.DaggerTVShowComponent
 import kotlinx.android.synthetic.main.fragment_tvshow.*
+import me.ibrahimyilmaz.kiel.adapterOf
 import javax.inject.Inject
 
-class TVShowFragment: Fragment() {
+class TVShowFragment : Fragment() {
 
     private fun contentView(): Int = R.layout.fragment_tvshow
 
@@ -24,12 +27,28 @@ class TVShowFragment: Fragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: TVShowViewModel
 
-    private var tvshowData = arrayListOf<TVShow>()
-    private val adapter: TVShowAdapter by lazy {
-        TVShowAdapter(tvshowData)
+    private val adapter = adapterOf<TVShow> {
+        register(
+            layoutResource = R.layout.item_tvshow,
+            viewHolder = ::TVShowHolder,
+            onBindViewHolder = { tvShowHolder, _, tvshow ->
+                tvShowHolder.cardItem.setOnClickListener {
+                    requireContext().startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("jetmovie://detail/tv/${tvshow.id}")
+                        )
+                    )
+                }
+            }
+        )
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(contentView(), container, false)
     }
 
@@ -57,10 +76,7 @@ class TVShowFragment: Fragment() {
             }
         })
 
-        viewModel.result.observe(this, Observer { tvshows ->
-            tvshowData.addAll(tvshows)
-            adapter.notifyDataSetChanged()
-        })
+        viewModel.result.observe(this, Observer(adapter::submitList))
 
         viewModel.error.observe(this, Observer { error ->
             toast(error)

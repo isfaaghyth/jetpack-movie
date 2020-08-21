@@ -25,6 +25,9 @@ dependencies {
     implementation Coroutines.core
     implementation Coroutines.android
 
+    //kiel
+    implementation Kiel.kiel
+
     //modules
     implementation project(Modules.abstraction)
     implementation project(Modules.network)
