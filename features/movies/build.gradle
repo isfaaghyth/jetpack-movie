@@ -17,6 +17,9 @@ dependencies {
     implementation Coroutines.core
     implementation Coroutines.android
 
+    //kiel
+    implementation Kiel.kiel
+
     //jetpack
     implementation Jetpack.recyclerView
     implementation Jetpack.lifecycle

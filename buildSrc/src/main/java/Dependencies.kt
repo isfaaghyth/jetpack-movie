@@ -20,7 +20,7 @@ object Releases {
 
 object Version {
     //common
-    const val kotlin = "1.3.20"
+    const val kotlin = "1.4.0"
     const val gradle = "3.3.1"
     const val material = "1.1.0-alpha05"
 
@@ -44,6 +44,9 @@ object Version {
 
     //data
     const val gson = "2.8.5"
+
+    //data
+    const val kiel = "1.2.1"
 
     //jetpack
     const val archLifecycle = "2.0.0"
@@ -93,7 +96,8 @@ object Retrofit {
     val scalarConverter = "com.squareup.retrofit2:converter-scalars:${Version.retrofit}"
     val rxAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Version.rxretrofit}"
     val okHttpLogging = "com.squareup.okhttp3:logging-interceptor:${Version.okhttpLogging}"
-    val coroutinesAdapter = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Version.coroutinesAdapter}"
+    val coroutinesAdapter =
+        "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Version.coroutinesAdapter}"
     val mock = "com.squareup.retrofit2:retrofit-mock:${Version.retrofit}"
 }
 
@@ -106,6 +110,10 @@ object Coroutines {
 object Glide {
     val glide = "com.github.bumptech.glide:glide:${Version.glide}"
     val compiler = "com.github.bumptech.glide:compiler:${Version.glide}"
+}
+
+object Kiel {
+    val kiel = "me.ibrahimyilmaz:kiel:${Version.kiel}"
 }
 
 object Dagger {
@@ -122,7 +130,8 @@ object Testing {
     val espresso = "androidx.test.espresso:espresso-core:${Version.espresso}"
     val coreTesting = "androidx.arch.core:core-testing:${Version.archLifecycle}"
     val espressoContrib = "androidx.test.espresso:espresso-contrib:${Version.espresso}"
-    val espressoIdleResources = "androidx.test.espresso:espresso-idling-resource:${Version.espresso}"
+    val espressoIdleResources =
+        "androidx.test.espresso:espresso-idling-resource:${Version.espresso}"
     val mockito = "org.mockito:mockito-inline:${Version.mockito}"
     val mockKtRunner = "de.jodamob.kotlin:kotlin-runner-junit4:${Version.mockTestRunner}"
     val androidX = "androidx.arch.core:core-testing:${Version.archLifecycle}"
